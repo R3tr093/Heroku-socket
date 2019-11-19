@@ -136,3 +136,42 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <p>Your terminal must remain active and will stop and display information from the server,<br> when you connect to the address <a href="http://localhost:3000/" target="_blank">localhost: 3000</a> you will see your application and in your terminal a message appears indicating that a customer is connected If you log off, and you close the page, you will get a message stating that a client is offline.</p>
 
+
+<p>Now we want to send our little page that will serve as a starting point for our chat on Heroku, it will be very simple and very short!</p>
+
+# :rocket: Deploy on Heroku
+
+<p> For this part, we suppose you have installed Heroku-CLI, if is not the case I let you find another way to this command that make sense to you.</p>
+
+<p> Well, let's started with this command </p>
+
+<code> heroku create </code>
+<p><i> In this case, the name of your application is randomly generated and return an url such as https://hidden-crag-28698.herokuapp.com/ </i> </p>
+
+<p><b>OR</b></p>
+
+<code> heroku create example </code>
+<p><i> In this case example is the name you want to provide to your application. This will return an url such as https://example.herokuapp.com/</i> </p>
+
+
+<p>That should create an application on Heroku and return to you the URL where you can find your application, you also get an url for the repository of your new application.</p> 
+
+<p>Let's follow with :  </p>
+
+<code> git commit -am 'socket.io starting point' </code>
+
+<p><i> Do a simple commit.</i></p>
+
+<code>git push heroku master</code>
+
+<p><i>Push your directory into the heroku repository of your application </i></p>
+
+<p> At the end of this command you should see something like this : </p>
+
+<img src="2.png">
+
+#  :clap: Basic structure done !
+
+<p> Now you have a basic structure to transform into an awesome chat service, the next step for you is to read the file named  <b>chat.md></b>
+
+<p> You can find the state of the basic structure repository on the branch named <b>base</b> </p>
