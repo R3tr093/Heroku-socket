@@ -63,4 +63,18 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 <p>Ok, it's enough for the package.json, now create two files in the root of your directory named as <b>index.html</b> and <b>server.js</b></p>
 
 
-<code> touch index.html<br>touch server.js </code>
+<code> touch index.html && touch server.js </code>
+
+<h3> :link: Install dependencies </h3>
+
+<p>  :raised_hand: Before writing our code in these files we will some dependencies. </p>
+
+<p>Open your terminal and type the instructions below </p>
+
+<code>npm install --save express socket.io</code>
+
+<p>Once this command is done express and socket.io is added to your dependencies into your package.json </p>
+
+<h3> :link: Write first piece of code.</h3>
+
+<img src="1.png">
