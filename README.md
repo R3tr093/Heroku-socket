@@ -78,3 +78,21 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 <h3> :link: Write first piece of code.</h3>
 
 <img src="1.png">
+
+```html
+<p id='server-time'></p>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script>
+      var socket = io();
+      var el = document.getElementById('server-time');
+      socket.on('time', function(timeString) {
+        el.innerHTML = 'Server time: ' + timeString;
+      });
+    
+    </script>
+  
+</body>
+</html>
+```
