@@ -31,7 +31,7 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <code>sudo snap install --classic heroku </code>
 
-<p> If your not using Linux, i let you find an equals solution who make sense to you, you probably should take a look on <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank"> Heroku CLI documentation</a>.</p>
+<p> If your not using a Linux OS, I let you find an equals solution who make sense to you, you probably should take a look on <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank"> Heroku CLI documentation</a>.</p>
 
 # Let's deploy !
 
@@ -44,22 +44,19 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <p> Once this command is complete, you get a file named  <b>package.json</b> into your directory. </p>
 
-
-
-<code> node -v </code>
-<code> npm -v </code>
-
 <p> Now open your package.json with your favorite text editor, in the array " scripts " and the following line <br>
 
- :arrow_right: "start": "node server.js" </p>
+<code> "start": "node server.js" </code>
 
-<p> Check your NodeJS and NPM version. </p>
+<p> Check your NodeJS  version. </p>
+
+<code> node -v </code>
 
 <p> Insert this array and into it mention your own node and npm version </p>
 
 <code>
 "engines": {
-  "node": "13.1.x"
+  "node": "12.13.0"
 }
 </code>
 
