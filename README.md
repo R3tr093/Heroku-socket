@@ -127,3 +127,9 @@ io.on('connection', (socket) => {
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 ```
+
+# :tada: First look ! 
+
+<p>You can now test your application by running the node server.js command in your terminal. </p>
+
+<p>Your terminal must remain active and will stop and display information from the server, when you connect to the address <a href="http://localhost:3000/" target="_blank">localhost: 3000</a> you will see your application and in your terminal a message appears indicating that a customer is connected If you log off, and you close the page, you will get a message stating that a client is offline.</p>
