@@ -16,7 +16,7 @@
 <li> :thumbsup: The basics of Javascript</li>
 <li> :thumbsup: The basics of Github</li>
 <li> :thumbsup: The use of Node to create a backend, in our case with the help of express.</li>
-<li> :thumbsup: Dependency management and a package.json</li>
+<li> :thumbsup: Dependency management and what is a package.json</li>
 <br><br>
 <p><i> That's suppose you already installed Node and NPM on your computer, but if you wondering where you can get NodeJS, follow the link below.</i></p>
 <p><i> :link: <a href="https://www.npmjs.com/get-npm" target="_blank">Download NodeJS and NPM </a> </i></p>
