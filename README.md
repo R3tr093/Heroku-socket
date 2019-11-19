@@ -174,4 +174,4 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <p> Now you have a basic structure to transform into an awesome chat service, the next step for you is to read the file named  <b>chat.md></b>
 
-<p> You can find the state of the basic structure repository on the branch named <b>base</b> </p>
+<p> You can find the state of the basic structure repository on the branch named <b>base</b></p>
