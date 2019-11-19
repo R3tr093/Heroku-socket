@@ -44,7 +44,7 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <p> Once this command is complete, you get a file named  <b>package.json</b> into your directory. </p>
 
-<p> Now open your package.json with your favorite text editor, in the array " scripts " and the following line <br>
+<p> Now open your package.json with your favorite text editor, find the array " scripts " and add the following line <br>
 
 <code> "start": "node server.js" </code>
 
