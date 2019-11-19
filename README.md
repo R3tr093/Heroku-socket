@@ -52,13 +52,44 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <code> node -v </code>
 
-<p> Insert this array and into it mention your own node and npm version </p>
+<p>Now, insert this array and into it mention your own node version </p>
 
 <code>
 "engines": {
   "node": "12.13.0"
 }
 </code>
+
+<p>Your package.json should seems like this. </p>
+
+```javascript
+
+{
+  "name": "Heroku-socket",
+  "version": "1.0.0",
+  "description": "<img src=\"repo.png\">",
+  "main": "index.js",
+  "engines": {
+    "node": "12.13.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R3tr093/Heroku-socket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R3tr093/Heroku-socket/issues"
+  },
+  "homepage": "https://github.com/R3tr093/Heroku-socket#readme"
+}
+
+```
 
 <p>Ok, it's enough for the package.json, now create two files in the root of your directory named as <b>index.html</b> and <b>server.js</b></p>
 
