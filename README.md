@@ -60,3 +60,7 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 }
 </code>
 
+<p>Ok, it's enough for the package.json, now create two files in the root of your directory named as <b>index.html</b> and <b>server.js</b></p>
+
+
+<code> touch index.html<br>touch server.js </code>
