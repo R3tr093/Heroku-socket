@@ -60,6 +60,8 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 }
 </code>
 
+<br>
+
 <p>Your package.json should seems like this. </p>
 
 ```javascript
@@ -91,25 +93,28 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 ```
 
-<p>Ok, it's enough for the package.json, now create two files in the root of your directory named as <b>index.html</b> and <b>server.js</b></p>
+<p>Ok, it's enough for the package.json, now, we have to create two files in the root of our directory, named as <b>index.html</b> and <b>server.js</b></p>
 
 
 <code> touch index.html && touch server.js </code>
 
 <h3> :link: Install dependencies </h3>
 
-<p>  :raised_hand: Before writing our code in these files we will some dependencies. </p>
+<p>  :raised_hand: Before writing our code in these files we will need some dependencies. </p>
 
 <p>Open your terminal and type the instructions below </p>
 
 <code>npm install --save express socket.io</code>
 
-<p>Once this command is done express and socket.io is added to your dependencies into your package.json </p>
+<p>Once this command is done, express and socket.io will be added to your dependencies into your package.json </p>
 
 <h3> :link: Write first piece of code.</h3>
 
+<hr>
+
 <img src="1.png">
 
+<hr>
 
 <h3> index.html </h3>
 
@@ -165,14 +170,16 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <code> npm start && node server.js </code>
 
-<p>Your terminal must remain active and will stop and display information from the server,<br> when you connect to the address <a href="http://localhost:3000/" target="_blank">localhost: 3000</a> you will see your application and in your terminal a message appears indicating that a customer is connected If you log off, and you close the page, you will get a message stating that a client is offline.</p>
+<p>Your terminal must remain active and will stop and display information from the server,<br> when you open your browser to the address <a href="http://localhost:3000/" target="_blank">localhost: 3000</a> you will see your application running !</p>
+
+ <p>Also in your terminal a message appears indicating that a customer is connected If you log off, and you close the page, you will get a message stating that a client is offline.</p>
 
 
-<p>Now we want to send our little page that will serve as a starting point for our chat on Heroku, it will be very simple and very short!</p>
+<p>Now we want to send our little application that will serve as a starting point for our chat on Heroku, it will be very simple and very short!</p>
 
 # :rocket: Deploy on Heroku
 
-<p> For this part, we suppose you have installed Heroku-CLI, if is not the case I let you find another way to this command that make sense to you.</p>
+<p> For this part, we suppose you have installed Heroku-CLI, if is not the case, I let you find another way to theses commands below that make sense to you.</p>
 
 <p> Well, let's started with this command </p>
 
@@ -182,7 +189,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 <p><b>OR</b></p>
 
 <code> heroku create example </code>
-<p><i> In this case example is the name you want to provide to your application. This will return an url such as https://example.herokuapp.com/</i> </p>
+<p><i> In this case <i>"example"</i> is the name you want to provide to your application. This will return an url such as https://example.herokuapp.com/</i> </p>
 
 
 <p>That should create an application on Heroku and return to you the URL where you can find your application, you also get an url for the repository of your new application.</p> 
@@ -195,7 +202,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <code>git push heroku master</code>
 
-<p><i>Push your directory into the heroku repository of your application </i></p>
+<p><i>This command, push your directory into the heroku repository of your application </i></p>
 
 <p> At the end of this command you should see something like this : </p>
 
