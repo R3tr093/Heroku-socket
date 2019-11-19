@@ -14,10 +14,11 @@
 <ul>
 
 <li> :thumbsup: The basics of Javascript</li>
+<li> :thumbsup: The basics of Github</li>
 <li> :thumbsup: The use of Node to create a backend, in our case with the help of express.</li>
 <li> :thumbsup: Dependency management and a package.json</li>
-
-<p><i> That's suppose you already installed Node and NPM on your computer, but if you wondering where you get NodeJS, follow the link below.</i></p>
+<br><br>
+<p><i> That's suppose you already installed Node and NPM on your computer, but if you wondering where you can get NodeJS, follow the link below.</i></p>
 <p><i> :link: <a href="https://www.npmjs.com/get-npm" target="_blank">Download NodeJS and NPM </a> </i></p>
 
 
@@ -35,4 +36,30 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 # Let's deploy !
 
 
+<p> Create a directory for your application, I named my directory <i>Heroku-socket </i> feel free to be more creative, and move into this directory.</p>
+
+<p>Our first command  is : </p>
+
+<code> npm init -y </code>
+
+<p> Once this command is complete, you get a file named  <b>package.json</b> into your directory. </p>
+
+
+
+<code> node -v </code>
+<code> npm -v </code>
+
+<p> Now open your package.json with your favorite text editor, in the array " scripts " and the following line <br>
+
+ :arrow_right: "start": "node server.js" </p>
+
+<p> Check your NodeJS and NPM version. </p>
+
+<p> Insert this array and into it mention your own node and npm version </p>
+
+<code>
+"engines": {
+  "node": "13.1.x"
+}
+</code>
 

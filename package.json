@@ -1,0 +1,20 @@
+{
+  "name": "Heroku-socket",
+  "version": "1.0.0",
+  "description": "<img src=\"repo.png\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R3tr093/Heroku-socket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R3tr093/Heroku-socket/issues"
+  },
+  "homepage": "https://github.com/R3tr093/Heroku-socket#readme"
+}
