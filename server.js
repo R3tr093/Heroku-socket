@@ -13,8 +13,6 @@ const server = express()
 
 const io = socketIO(server);
 
-let usersCount = 0;
-
 io.on('connection', (socket) => {
   
 

@@ -42,8 +42,6 @@ const server = express()
 
 const io = socketIO(server);
 
-let usersCount = 0;
-
 io.on('connection', (socket) => {
   
 
@@ -55,3 +53,45 @@ io.on('connection', (socket) => {
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 ```
+
+<p> About the line who said : </p>
+
+<code> const path = require('path'); </code>
+<code> const socketIO = require('socket.io'); </code>
+<code> const path = require('path'); </code>
+
+<p> They import the modules we need and keep them in constants, which we will use to use the features of these modules. </p>
+
+<code> const PORT = process.env.PORT || 3000; </code>
+<code> const INDEX = path.join(__dirname, 'index.html');</code>
+
+<p> Stocke dans deux constantes, d'une part le port d'entrée de notre server, qui sera soit process.env pour heroku et pour nous en local le port 3000. <br>
+
+et d'autre part le chemin vers notre template index.html </p>
+
+``` javascript
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX) )
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+```
+
+<p> These lines of codes simplified way, allow to load our file index.html as template client when a client will arrive on our application. </p>
+
+<code> const io = socketIO(server); </code>
+
+<p> Simplified way anytime, this line generates an instance of socket.io for our server which is passed to it as parameter </p>
+
+``` javascript
+
+io.on('connection', (socket) => {
+  
+  console.log("Client connected")
+
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
+
+``` 
+
+<p>Contains the instructions to produce when a client connects to our server. </p>
