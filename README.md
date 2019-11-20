@@ -5,7 +5,7 @@
 <hr>
 
 <p> Hello, this repository talking about how to deploy and build a chat service working with <b>socket.io</b> on Heroku.</p>
-<p> You should find some files with the .md extension for every upgrade, this read me will guide you to deploy your starting environment, but for that, there is some knowledge to have on <b>Javascript</b>, <b>NodeJS</b> and <b>NPM</b>, I will provide you all the information you need into this repository about socket.io </p>
+<p> You should find some files with the <b>.md</b> extension for every upgrade, theses files will guide you to deploy your starting environment, but for that, there is some knowledges to have on <b>Javascript</b>, <b>NodeJS</b> and <b>NPM</b>, I will provide you all the information you need into this repository about socket.io </p>
 
 <h3> :question: - What do you really need to know? </h3>
 
@@ -53,21 +53,23 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <code> "start": "node server.js" </code>
 
-<p> Check your NodeJS  version. </p>
+<p> Check your NodeJS version by the command below. </p>
 
 <code> node -v </code>
 
-<p>Now, insert this array and into it mention your own node version </p>
-
+<p>Also, you should insert this array. </p>
+ 
 <code>
 "engines": {
   "node": "12.13.0"
 }
 </code>
 
+<p> <i><b> :warning: And into it mention your own node version. </p>
+
 <br>
 
-<p>Your package.json should seems like this. </p>
+<p>Your package.json should look like this. </p>
 
 ```javascript
 
@@ -100,12 +102,9 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <p>Ok, it's enough for the package.json, now, we have to create two files in the root of our directory, named as <b>index.html</b> and <b>server.js</b></p>
 
-
-<code> touch index.html && touch server.js </code>
-
 <h3> :link: Install dependencies </h3>
 
-<p>  :raised_hand: Before writing our code in these files we will need some dependencies. </p>
+<p>  :raised_hand: Before writing our code in theses files we will need some dependencies. </p>
 
 <p>Open your terminal and type the instructions below </p>
 
@@ -179,12 +178,14 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
  <p>Also in your terminal a message appears indicating that a customer is connected If you log off, and you close the page, you will get a message stating that a client is offline.</p>
 
+ <p>On client side, you can see the date time of your server </p>
+
 
 <p>Now we want to send our little application that will serve as a starting point for our chat on Heroku, it will be very simple and very short!</p>
 
 # :rocket: Deploy on Heroku
 
-<p> For this part, we suppose you have installed Herogit push --set-upstream origin connections
+<p> For this part, we suppose you already have installed Heroku CLI </p>
 
 
 <code> heroku create </code>
@@ -214,10 +215,13 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 #  :clap: Basic structure done !
 
-<p> Now you have a basic structure to transform into an awesome chat service, the next step for you is to read the file named  <b>chat.md</b>
+<p> Now you have a basic structure to transform into an awesome chat service ! </p>
 
 <p> You can find the state of the basic structure repository on the branch named <i><a href="https://github.com/R3tr093/Heroku-socket/tree/base">base </a></i>  </p>
 
 <h3>  :question: And now ... ? </h3>
 
-<p> The next step for you if you want to continue this project with me, is to go to the branch called <i><a href="https://github.com/R3tr093/Heroku-socket/tree/connections">connections </a></i> . </p>
+<p> You are free to continue by yourself or ... <br>
+ If you want to continue this project with me, is to go to the branch called <i><a href="https://github.com/R3tr093/Heroku-socket/tree/connections">connections </a></i> . </p>
+
+ <p> In this branch I will give you more informations about the meaning of our starter code, and guide you to build the very first step of your chat services. </p>
