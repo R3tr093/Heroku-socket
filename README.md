@@ -56,18 +56,22 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <p> About the line who said : </p>
 
-<code> const path = require('path'); </code>
-<code> const socketIO = require('socket.io'); </code>
-<code> const path = require('path'); </code>
+<code> const path = require('path'); </code><br>
+<code> const socketIO = require('socket.io'); </code><br>
+<code> const path = require('path'); </code><br>
 
 <p> They import the modules we need and keep them in constants, which we will use to use the features of these modules. </p>
 
-<code> const PORT = process.env.PORT || 3000; </code>
-<code> const INDEX = path.join(__dirname, 'index.html');</code>
+<hr>
+
+<code> const PORT = process.env.PORT || 3000; </code> <br>
+<code> const INDEX = path.join(__dirname, 'index.html');</code> <br>
 
 <p> Stocke dans deux constantes, d'une part le port d'entrée de notre server, qui sera soit process.env pour heroku et pour nous en local le port 3000. <br>
 
 et d'autre part le chemin vers notre template index.html </p>
+
+<hr>
 
 ``` javascript
 
@@ -95,3 +99,5 @@ io.on('connection', (socket) => {
 ``` 
 
 <p>Contains the instructions to produce when a client connects to our server. </p>
+
+<hr>
