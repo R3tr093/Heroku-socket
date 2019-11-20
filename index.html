@@ -4,12 +4,21 @@
     
     <script src="/socket.io/socket.io.js"></script>
     
-    <script>
+    <script type="text/javascript">
+    
+
       var socket = io();
+
       var el = document.getElementById('server-time');
+
       socket.on('time', function(timeString) {
-        el.innerHTML = 'Server time: ' + timeString;
+          el.innerHTML = 'Server time: ' + timeString;
       });
+
+
+
+
+    
     
     </script>
   
