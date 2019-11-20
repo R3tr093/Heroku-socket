@@ -326,6 +326,8 @@ Now we have two things, the greeting message, and the number of users, but most 
 <p> Run your project and start many windows in your browser on the adress <a href="http://localhost:3000/" target="_blank"> http://localhost:3000/</a><br>
 you should see that, the amount of user change on every windows when an user is connected or disconnected to the server.</p>
 
+<p> You can continue and build this with me on the branch : <i><a href="https://github.com/R3tr093/Heroku-socket/tree/emissions">emission</a></i></p>
+
 <p> Let's try to deploy on Heroku to look if everything is okay in production. </p>
 
 <h3>  :rocket: deploy on Heroku </h3>
@@ -340,3 +342,4 @@ you should see that, the amount of user change on every windows when an user is 
 
 <code> git push *URL Of the heroku git repository* master </code>
 
+<p> You can continue and build this with me on the branch : <i><a href="https://github.com/R3tr093/Heroku-socket/tree/emissions">emission</a></i></p>
