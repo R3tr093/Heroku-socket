@@ -67,9 +67,9 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 <code> const PORT = process.env.PORT || 3000; </code> <br>
 <code> const INDEX = path.join(__dirname, 'index.html');</code> <br>
 
-<p> Stocke dans deux constantes, d'une part le port d'entrée de notre server, qui sera soit process.env pour heroku et pour nous en local le port 3000. <br>
+<p> Store in two constants, on the one hand the port of entry of our server, which will be either process.env for heroku and for us in local the port 3000. <br>
 
-et d'autre part le chemin vers notre template index.html </p>
+and on the other hand the path to our template index.html </p>
 
 <hr>
 
@@ -82,6 +82,8 @@ const server = express()
 ```
 
 <p> These lines of codes simplified way, allow to load our file index.html as template client when a client will arrive on our application. </p>
+
+<hr>
 
 <code> const io = socketIO(server); </code>
 
