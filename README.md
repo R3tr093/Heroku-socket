@@ -116,3 +116,96 @@ io.on('connection', (socket) => {
 <p>Thanks to this, we managed to display the server time in the client template.</p>
 
 <h3>  :construction_worker: Our first work ! </h3>
+
+<p> We're ready to work on the server side, Our first priority is to provide a welcome message every time a user arrives on our chat. What will fill two birds with one stone, the objectives : </p>
+
+<p><i> :memo: Reacting to the arrival of a user. </i></p>
+
+<p><i> :memo: Display a greeting in our client template. </i></p>
+
+``` javascript
+
+let hello = "Hello, welcome on our chat service have a good talking !"
+
+io.on('connection', (socket) => {
+  
+  io.emit("hello",hello)
+
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
+
+```
+
+<p> You probably notice that, we add two lines who mention : </p>
+
+<code>let hello = "Hello, welcome on our chat service have a good talking !" </code>
+
+<p> Our variable with the gretting message we want to send, we also can use an array with many different messages or something, but it work for our simple example. </p>
+
+<code> io.emit("hello",hello) </code>
+
+<p> That means when a connection to the socket is issued, I want you to emit an event called hello and take as value to send fro the client my variable named hello also.</p>
+
+<p>Now let's look how the client side can get this data and use it. </p>
+
+<p> Let's add two line on the client side <a href="index.html" target="_blank">(index.html)></a></p>
+
+``` html
+
+<html>
+  <body>
+    <p id='server-time'></p>
+
+    <p id="serverMessages"></p>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script type="text/javascript">
+    
+
+      var socket = io();
+
+      var el = document.getElementById('server-time');
+
+
+      socket.on('time', function(timeString) {
+          el.innerHTML = 'Server time: ' + timeString;
+      });
+
+      socket.on('hello', function(message){
+        document.getElementById('serverMessages').textContent = "" + message;
+      })
+
+
+    
+    
+    </script>
+  
+</body>
+</html>
+
+```
+
+<p> We added a ' p ' tag with the id : serverMessages, he will contain our messages from the server, exactly the sameway we use to display server time. </p>
+
+``` html
+<p id="serverMessages"> </p> </code>
+```
+
+<p> And here the few lines who make us able to get information from backend : </p>
+
+``` javascript
+
+      socket.on('hello', function(message){
+        document.getElementById('serverMessages').textContent = "" + message;
+      })
+
+``` 
+
+<p> Our socket object uses the <b>on</b> method to listen to an event that is passed as the first parameter of the method, in other words <i>'hello'</i>, it takes as second parameter an anonymous function that will take as parameter the values ​​sent by our backend, so, message contains the values passed in parameters of the function socket.emit ('hello') that we defined a few moments ago in our server.js file </p>
+
+<p> If you restart your project with theses new lines, you should see the message we wanted to send just below the server time. </p>
+
+<img src="3.png">
+
+<p>Well we succesfully reacting to the arrival of a user , and  Displayed a greeting in our client template. </p>

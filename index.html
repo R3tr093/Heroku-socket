@@ -1,6 +1,8 @@
 <html>
   <body>
     <p id='server-time'></p>
+
+    <p id="serverMessages"></p>
     
     <script src="/socket.io/socket.io.js"></script>
     
@@ -11,11 +13,14 @@
 
       var el = document.getElementById('server-time');
 
+
       socket.on('time', function(timeString) {
           el.innerHTML = 'Server time: ' + timeString;
       });
 
-
+      socket.on('hello', function(message){
+        document.getElementById('serverMessages').textContent = "" + message;
+      })
 
 
     

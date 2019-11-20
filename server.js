@@ -13,8 +13,11 @@ const server = express()
 
 const io = socketIO(server);
 
+let hello = "Hello, welcome on our chat service have a good talking !"
+
 io.on('connection', (socket) => {
   
+  io.emit("hello",hello)
 
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
