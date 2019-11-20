@@ -1,6 +1,6 @@
 # Heroku-socket - Connections
 
-<p> :warning: A little thing I will let you know, <b>if you have not followed the construction guide of the starting environment, and you have download the repository </b>, you can skip the sections concerning Heroku, and above all do not forget to make a <b>npm install </b> in the root of the directory to install the dependecies of our project.</p>
+<p> :warning: A little thing I will let you know, <b>if you have not followed the construction guide of the starting environment, and you have download the repository </b>, you can skip the sections concerning Heroku, and above all do not forget to make a <b>npm install </b> in the root of the directory to install the dependencies of our project.</p>
 
 <img src="repo.png">
 
@@ -70,7 +70,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 <code> const PORT = process.env.PORT || 3000; </code> <br>
 <code> const INDEX = path.join(__dirname, 'index.html');</code> <br>
 
-<p> Store in two constants, on the one hand the port of entry of our server, which will be either process.env for heroku and for us in local the port 3000. <br>
+<p> Store in two constants, on the one hand, the port of entry of our server, which will be either <b><i>process.env</i></b> for heroku and for us in local the <b></i>port 3000</b></i>.<br>
 
 And on the other hand the path to our template <a href="index.html" target="_blank">index.html</a> </p>
 
@@ -84,13 +84,13 @@ const server = express()
 
 ```
 
-<p> These lines of codes simplified way, allow to load our file  <a href="index.html" target="_blank">index.html</a> as template client when a client will arrive on our application. </p>
+<p> These lines of codes simplified way, allow to load our file  <a href="index.html" target="_blank">index.html</a> as a template client,  when a client will arrive on our application. </p>
 
 <hr>
 
 <code> const io = socketIO(server); </code>
 
-<p> Simplified way anytime, this line generates an instance of socket.io for our server which is passed to it as parameter </p>
+<p> Simplified way anytime, this line generates an instance of socket.io for our server which is passed to it as parameter.</p>
 
 ``` javascript
 
@@ -109,9 +109,9 @@ io.on('connection', (socket) => {
 
 <code>setInterval(() => io.emit('time', new Date().toTimeString()), 1000);</code>
 
-<p> this one is the main course, the setInterval function takes two parameters the first one is the instruction set that we have to execute, the second the time sequence to which this instruction set must be executed, in our case it will be 1000, in other words every second. </p>
+<p> this one is my favorite, the setInterval function takes two parameters the first one is the instruction set that we have to execute, the second parameter is the time sequence to which this instruction set must be executed, in our case it will be 1000, in other words every second. </p>
 
-<p>The first parameter we passed asks socket.io to emit an event time, which will retrieve the current date (from our server) to our client file <i>(index.html)</i> </p>
+<p>The first parameter we passed asks socket.io to <b>emit an event named 'time'</b>, which will retrieve the current date (from our server) to our client template <i>(index.html)</i>.</p>
 
 <p>Thanks to this, we managed to display the server time in the client template.</p>
 
@@ -136,7 +136,7 @@ io.on('connection', (socket) => {
 
 ```
 
-<p> You probably notice that, we add two lines who mention : </p>
+<p> You probably notice that, I added two lines who mention : </p>
 
 <code>let hello = "Hello, welcome on our chat service have a good talking !" </code>
 
@@ -144,11 +144,11 @@ io.on('connection', (socket) => {
 
 <code> io.emit("hello",hello) </code>
 
-<p> That means when a connection to the socket is issued, I want you to emit an event called hello and take as value to send fro the client my variable named hello also.</p>
+<p> That means when a connection to the socket is issued, I want you to emit an event called <b>'hello'</b> and take as value to send my variable named hello also.</p>
 
 <p>Now let's look how the client side can get this data and use it. </p>
 
-<p> Let's add two line on the client side <a href="index.html" target="_blank">(index.html)></a></p>
+<p> Let's add two lines on the client side <a href="index.html" target="_blank">(index.html)></a></p>
 
 ``` html
 
@@ -202,7 +202,7 @@ io.on('connection', (socket) => {
 
 ``` 
 
-<p> Our socket object uses the <b>on</b> method to listen to an event that is passed as the first parameter of the method, in other words <i>'hello'</i>, it takes as second parameter an anonymous function that will take as parameter the values ​​sent by our backend, so, message contains the values passed in parameters of the function socket.emit ('hello') that we defined a few moments ago in our server.js file </p>
+<p> Our socket object uses the <b>on</b> method to listen to an event that is passed as the first parameter of the method, in our case <i>'hello'</i>, it takes as second parameter an anonymous function that will have as parameter the values ​​sent by our backend, so, message contains the values passed in parameters of the function socket.emit ('hello') that we defined a few moments ago in our server.js file </p>
 
 <p> If you restart your project with theses new lines, you should see the message we wanted to send just below the server time. </p>
 
