@@ -272,4 +272,68 @@ io.on('connection', (socket) => {
 
 <p>That's all for the <b>server.js</b>, now look at the client side.</p>
 
+<hr>
+
+``` javascript
+
+<html>
+  <body>
+    <p id='server-time'></p>
+
+    <p id="serverMessages"></p>
+
+    <p id="amountUsers"></p>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script type="text/javascript">
+    
+
+      var socket = io();
+
+      var el = document.getElementById('server-time');
+
+
+      socket.on('time', function(timeString) {
+          el.innerHTML = 'Server time: ' + timeString;
+      });
+
+      socket.on('hello', function(message){
+        document.getElementById('serverMessages').textContent = "" + message.content;
+        document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
+      })
+
+
+    
+    
+    </script>
+  
+</body>
+</html>
+
+```
+
+<p> I added a 'p' tag to display how many users is connected, and i added a new instruction into <b> socket.on('hello') </b>, I also use the properties of my object message.</p>
+<p>Nice job, is done and you understand all the code ! The next part should be less theoric. </p>
+
+<p> the next part will be less theoretical and will provide the first basic features of a chat, identifying a user and viewing messages from a user. <br>
+
+Now we have two things the server time and the number of users but most of all we know how socket.io works briefly and we will be able to build our chat! </p>
+
+<p> Run your project and start many windows in your browser on the adress <a href="http://localhost:3000/" target="_blank"> http://localhost:3000/</a><br>
+you should see that, the amount of user change on every windows when an user is connected or disconnected to the server.</p>
+
+<p> Let's try to deploy on Heroku to look if everything is okay in production. </p>
+
+<h3>  :rocket: deploy on Heroku </h3>
+
+<hr>
+
+<p> Pretty simple thing, one command line instruction is enough : </p>
+
+<code> git push heroku master </code>
+
+<p>That also can be replaced by : </p>
+
+<code> git push *URL Of the heroku git repository* master </code>
 
