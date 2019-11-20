@@ -246,7 +246,7 @@ io.on('connection', (socket) => {
 
 <code>io.emit("hello",hello) </code>
 
-<h2> TO
+<h2> TO </h2>
 
 <code>io.emit("hello",{ content: hello, amount: amountUser }) </code>
 
