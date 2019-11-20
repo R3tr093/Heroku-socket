@@ -238,7 +238,8 @@ io.on('connection', (socket) => {
 
 ``` 
 
-<p> We have a new variable named as : <b>'amountUser'</b>, she is :warning: declared out of the io.on('connection'), because if I declare this variable inside the connection event, each user arrivals will reset is value to 0. </p>
+<p> We have a new variable named as : <b>'amountUser'</b>, <br> 
+she is :warning: declared out of the io.on('connection'), because if I declare this variable inside the connection event, each user arrivals will reset is value to 0. </p>
 
 <p><b> Inside my io.on('connection') </b>, I increment amountUser by his current value plus one, and I transform this integer variable into a string.</p>
 
@@ -274,7 +275,9 @@ io.on('connection', (socket) => {
 
 <hr>
 
-``` javascript
+<h3> Client side (index.html)</h3>
+
+``` html
 
 <html>
   <body>
