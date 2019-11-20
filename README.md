@@ -33,6 +33,11 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <p> If your not using a Linux OS, I let you find an equals solution who make sense to you, you probably should take a look on <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank"> Heroku CLI documentation</a>.</p>
 
+<p> Voici le lien que j'ai suivi pour écrire ce guide, qui est plutôt un référentiel de rappel pour moi-même, mais peu importe. </p>
+<br>
+
+<p><i>:link: <a href="https://devcenter.heroku.com/articles/node-websockets" target="_blank">Heroku - Websocket </a></i></p>
+
 # Let's deploy !
 
 
