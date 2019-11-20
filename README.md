@@ -65,7 +65,7 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 }
 </code>
 
-<p> <i><b> :warning: And into it mention your own node version. </p>
+<p> <i><b> :warning: And into it mention your own node version.</b> </p>
 
 <br>
 
