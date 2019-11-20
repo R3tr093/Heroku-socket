@@ -176,12 +176,13 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <p>Your terminal must remain active and will stop and display information from the server,<br> when you open your browser to the address <a href="http://localhost:3000/" target="_blank">localhost: 3000</a> you will see your application running !</p>
 
- <p>Also in your terminal a message appears indicating that a customer is connected If you log off, and you close the page, you will get a message stating that a client is offline.</p>
+ <p>Also in your terminal a message appears indicating that " client connected " .<br>
+If you log off, and close the page, you will get a message stating that a client is offline.</p>
 
- <p>On client side, you can see the date time of your server </p>
+ <p>For now, nn client side, you can see the date time of your server.</p>
 
 
-<p>Now we want to send our little application that will serve as a starting point for our chat on Heroku, it will be very simple and very short!</p>
+<p>Now we want to send our little application that will serve as a starting point for our chat on Heroku, is very simple and very short!</p>
 
 # :rocket: Deploy on Heroku
 
@@ -203,11 +204,13 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <code> git commit -am 'socket.io starting point' </code>
 
-<p><i> Do a simple commit.</i></p>
+<br>
+
+<p><i> Do a simple commit. </i></p>
 
 <code>git push heroku master</code>
 
-<p><i>This command, push your directory into the heroku repository of your application </i></p>
+<p><i>This command, push your directory into the heroku repository of your application. </i></p>
 
 <p> At the end of this command you should see something like this : </p>
 
@@ -222,6 +225,6 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 <h3>  :question: And now ... ? </h3>
 
 <p> You are free to continue by yourself or ... <br>
- If you want to continue this project with me, is to go to the branch called <i><a href="https://github.com/R3tr093/Heroku-socket/tree/connections">connections </a></i> . </p>
+ If you want to continue this project with me, you can go to the branch called <i><a href="https://github.com/R3tr093/Heroku-socket/tree/connections">connections </a></i> . </p>
 
  <p> In this branch I will give you more informations about the meaning of our starter code, and guide you to build the very first step of your chat services. </p>
