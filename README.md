@@ -72,7 +72,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <p> Store in two constants, on the one hand the port of entry of our server, which will be either process.env for heroku and for us in local the port 3000. <br>
 
-and on the other hand the path to our template index.html </p>
+And on the other hand the path to our template <a href="index.html" target="_blank">index.html</a> </p>
 
 <hr>
 
@@ -84,7 +84,7 @@ const server = express()
 
 ```
 
-<p> These lines of codes simplified way, allow to load our file index.html as template client when a client will arrive on our application. </p>
+<p> These lines of codes simplified way, allow to load our file  <a href="index.html" target="_blank">index.html</a> as template client when a client will arrive on our application. </p>
 
 <hr>
 
