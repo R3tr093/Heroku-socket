@@ -57,7 +57,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 ```
 
-<p> About the line who said : </p>
+<p> About the lines who said : </p>
 
 <code> const path = require('path'); </code><br>
 <code> const socketIO = require('socket.io'); </code><br>
@@ -209,3 +209,67 @@ io.on('connection', (socket) => {
 <img src="3.png">
 
 <p>Well we succesfully reacting to the arrival of a user , and  Displayed a greeting in our client template. </p>
+
+<p>Now we want to know how many users is connected, and send that informations to our client to display it in the template.</p>
+
+<p>I write some new instructions in my code, let's look that.</p>
+
+``` javascript
+
+let amountUser = 0;
+
+let hello = "Hello, welcome on our chat service have a good talking !"
+
+io.on('connection', (socket) => {
+  
+  amountUser++;
+  amountUser = String(amountUser)
+
+  io.emit("hello",{ content: hello, amount: amountUser })
+
+  socket.on('disconnect', () => {
+  
+  amountUser--;
+  io.emit("hello",{ content: hello, amount: amountUser })
+  
+  });
+
+});
+
+``` 
+
+<p> We have a new variable named as : <b>'amountUser'</b>, she is :warning: declared out of the io.on('connection'), because if I declare this variable inside the connection event, each user arrivals will reset is value to 0. </p>
+
+<p><b> Inside my io.on('connection') </b>, I increment amountUser by his current value plus one, and I transform this integer variable into a string.</p>
+
+<p>Look how I changed the hello emitter. </p>
+
+<code>io.emit("hello",hello) </code>
+
+<h2> TO
+
+<code>io.emit("hello",{ content: hello, amount: amountUser }) </code>
+
+<p>Now the value emitted is an object, with two properties <b><i> content </b></i>, and  <b><i> amount </b></i> </p>
+
+<p>By this way, you can send many different data to an event. </p>
+
+<p> Now i also need to decrement my amountUsers on disconnect, i write two instructions into my disconnect event. </p>
+
+
+``` javascript
+
+
+  socket.on('disconnect', () => {
+  
+  amountUser--;
+  io.emit("hello",{ content: hello, amount: amountUser })
+  
+  });
+
+```
+<p>I hope i don't have to explain to you theses instructions.  :wink: </p>
+
+<p>That's all for the <b>server.js</b>, now look at the client side.</p>
+
+

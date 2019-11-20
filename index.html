@@ -3,6 +3,8 @@
     <p id='server-time'></p>
 
     <p id="serverMessages"></p>
+
+    <p id="amountUsers"></p>
     
     <script src="/socket.io/socket.io.js"></script>
     
@@ -19,7 +21,8 @@
       });
 
       socket.on('hello', function(message){
-        document.getElementById('serverMessages').textContent = "" + message;
+        document.getElementById('serverMessages').textContent = "" + message.content;
+        document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
       })
 
 
