@@ -5,7 +5,7 @@
 <hr>
 
 <p> Hello, this repository talking about how to deploy and build a chat service working with <b>socket.io</b> on Heroku.</p>
-<p> You should find some files with the <b>.md</b> extension for every upgrade, theses files will guide you to deploy your starting environment, but for that, there is some knowledges to have on <b>Javascript</b>, <b>NodeJS</b> and <b>NPM</b>, I will provide you all the information you need into this repository about socket.io </p>
+<p> You should find some files with the <b>.md</b> extension for every upgrade, this readme will guide you to deploy your starting environment, but for that, there is some knowledges to have on <b>Javascript</b>, <b>NodeJS</b> and <b>NPM</b>, I will provide you all the informations you need into this repository about socket.io </p>
 
 <h3> :question: - What do you really need to know? </h3>
 
@@ -65,7 +65,7 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 }
 </code>
 
-<p> <i><b> :warning: And into it mention your own node version.</b> </p>
+<p> <i><b> :warning: And into it mention your own node version.</b></i> </p>
 
 <br>
 
