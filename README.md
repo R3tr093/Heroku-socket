@@ -184,9 +184,8 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 # :rocket: Deploy on Heroku
 
-<p> For this part, we suppose you have installed Heroku-CLI, if is not the case, I let you find another way to theses commands below that make sense to you.</p>
+<p> For this part, we suppose you have installed Herogit push --set-upstream origin connections
 
-<p> Well, let's started with this command </p>
 
 <code> heroku create </code>
 <p><i> In this case, the name of your application is randomly generated and return an url such as https://hidden-crag-28698.herokuapp.com/ </i> </p>
@@ -217,4 +216,8 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <p> Now you have a basic structure to transform into an awesome chat service, the next step for you is to read the file named  <b>chat.md</b>
 
-<p> You can find the state of the basic structure repository on the branch named <b>base</b> </p>
+<p> You can find the state of the basic structure repository on the branch named <i><a href="https://github.com/R3tr093/Heroku-socket/tree/base">base </a></i>  </p>
+
+<h3>  :question: And now ... ? </h3>
+
+<p> The next step for you if you want to continue this project with me, is to go to the branch called <i><a href="https://github.com/R3tr093/Heroku-socket/tree/connections">connections </a></i> . </p>
