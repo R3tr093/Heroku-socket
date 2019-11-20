@@ -23,6 +23,8 @@
 
 <p> This part will be more informative than the previous one, I will try to explain each new line of code, to understand how socket.io works line by line, we already have a good example of that, let's take a first look on our <a href="server.js" target="_blank">server.js</a> file. </p>
 
+<p> If you missing some informations, take a look on <a href="https://socket.io/docs/server-api/#Server"> socket.io documentation </a></p>
+
 
 <h3> :computer: Understanding how work our socket server side. </h3>
 
@@ -101,6 +103,16 @@ io.on('connection', (socket) => {
 
 ``` 
 
-<p>Contains the instructions to produce when a client connects to our server. </p>
+<p>Contains the instructions to produce when a client connects or disconnect to our server. </p>
 
 <hr>
+
+<code>setInterval(() => io.emit('time', new Date().toTimeString()), 1000);</code>
+
+<p> this one is the main course, the setInterval function takes two parameters the first one is the instruction set that we have to execute, the second the time sequence to which this instruction set must be executed, in our case it will be 1000, in other words every second. </p>
+
+<p>The first parameter we passed asks socket.io to emit an event time, which will retrieve the current date (from our server) to our client file <i>(index.html)</i> </p>
+
+<p>Thanks to this, we managed to display the server time in the client template.</p>
+
+<h3>  :construction_worker: Our first work ! </h3>
