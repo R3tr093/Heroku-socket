@@ -13,13 +13,24 @@ const server = express()
 
 const io = socketIO(server);
 
-let usersCount = 0;
+let amountUser = 0;
+
+let hello = "Hello, welcome on our chat service have a good talking !"
 
 io.on('connection', (socket) => {
   
-  console.log("Client connected")
+  amountUser++;
+  amountUser = String(amountUser)
 
-  socket.on('disconnect', () => console.log('Client disconnected'));
+  io.emit("hello",{ content: hello, amount: amountUser })
+
+  socket.on('disconnect', () => {
+  
+  amountUser--;
+  io.emit("hello",{ content: hello, amount: amountUser })
+  
+  });
+
 });
 
 
