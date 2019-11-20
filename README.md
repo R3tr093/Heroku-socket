@@ -321,7 +321,7 @@ she is :warning: declared out of the io.on('connection'), because if I declare t
 
 <p> the next part will be less theoretical and will provide the first basic features of a chat, identifying a user and viewing messages from a user. <br>
 
-Now we have two things the server time and the number of users but most of all we know how socket.io works briefly and we will be able to build our chat! </p>
+Now we have two things, the greeting message, and the number of users, but most of all we know how socket.io works briefly and we will be able to build our chat ! </p>
 
 <p> Run your project and start many windows in your browser on the adress <a href="http://localhost:3000/" target="_blank"> http://localhost:3000/</a><br>
 you should see that, the amount of user change on every windows when an user is connected or disconnected to the server.</p>
