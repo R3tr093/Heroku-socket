@@ -17,11 +17,6 @@ let usersCount = 0;
 
 io.on('connection', (socket) => {
   
-  usersCount++;
-
-  usersCount = String(usersCount)
-
-  socket.emit('message', usersCount);
 
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
