@@ -81,7 +81,7 @@ io.on('connection', (socket) => {
   amountUser = String(amountUser)
 
   // Emit data with user name add new amountUser value to EVERYONE.
-  io.emit("logOn",{content: userName, amount: amountUser })
+  io.emit("logOn",{content: userName, amount: amountUser, users: users })
 
   // Greetings to arrival for the client
   socket.emit("hello",hello)
@@ -109,9 +109,10 @@ io.on('connection', (socket) => {
   amountUser--;
 
   // Emit data with user name add new amountUser value to EVERYONE.
-  io.emit("logOff",{ content: socket.pseudo, amount: amountUser })
+  io.emit("logOff",{ content: socket.pseudo, amount: amountUser, users: users})
   
   });
+
 
 });
 

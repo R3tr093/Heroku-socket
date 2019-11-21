@@ -125,7 +125,12 @@ socket.on('hello', function(message){
 
   <body>
 
-    <p class="d-none d-md-block"  id="amountUsers"></p>
+    <div class="d-none d-md-block col-1" id="usersList">
+
+        <p id="amountUsers"></p>
+
+    </div>
+    
 
     <div class="container">
           
@@ -133,7 +138,7 @@ socket.on('hello', function(message){
            
 
       
-            <div class="col-lg-12 col-xs-12 col-sm-12" id="main">
+            <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12" id="main">
                
                 <p id='server-time'></p>
       
@@ -163,6 +168,9 @@ socket.on('hello', function(message){
 </body>
 </html>
 
+
+
+
 ```
 
 <p> And finally, here my CSS, but you still can define your own style. </p>
@@ -170,27 +178,30 @@ socket.on('hello', function(message){
 <h4> index.css </h4>
 
 ``` css
+
 body
 {
     margin: 0px;
     height: 100vh;
+    overflow: hidden;
+    display: flex;
 }
-
 
 #main
 {
-   
+  
   border: 1px solid black;
-  margin: 5px;
   text-align: center;
 
 }
 
-#amountUsers
+#userList
 {
     position: absolute;
     left: 10px;
-    top: 95vh;
+    top: 0vh;
+    overflow-y: auto;
+    width: 5%;
 
 }
 
@@ -198,6 +209,7 @@ body
 {
     text-align: left;
 }
+
 
 ``` 
 
@@ -418,6 +430,12 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <code> io.emit("logOff",{ content: socket.pseudo, amount: amountUser })}); </code><br>
 
-<p><i>Don't be afraid we don't change the <b> index.html </b> so much !  :sweat_smile: </i></p>
+<p><i>Don't be afraid we don't change the <b> client.js </b> so much !  :sweat_smile: </i></p>
 
 <hr>
+
+<h3> client.js</h3>
+
+<hr>
+
+<p>

@@ -2,23 +2,25 @@ body
 {
     margin: 0px;
     height: 100vh;
+    overflow: hidden;
+    display: flex;
 }
-
 
 #main
 {
-   
+  
   border: 1px solid black;
-  margin: 5px;
   text-align: center;
 
 }
 
-#amountUsers
+#userList
 {
     position: absolute;
     left: 10px;
-    top: 95vh;
+    top: 0vh;
+    overflow-y: auto;
+    width: 5%;
 
 }
 
