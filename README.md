@@ -219,9 +219,7 @@ body
 
 <h3> :registered: Generate an random name for each users, and announce a new arrival on the chat </h3>
 
-<p>Well, we're ready and we have a lot of work to do, so before all of that we need a new dependencie named as " <b> ent </b>", type in your terminal the command below : </p>
-
-<code>npm install --save ent </code>
+<hr>
 
 <br>
 
