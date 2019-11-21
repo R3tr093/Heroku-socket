@@ -105,3 +105,75 @@ socket.on('hello', function(message){
 })
 
 ``` 
+
+<p> Nothing to explain about this, now we will proceed to some modification of our <a href="index.html" target="_blank">index.html</a> </p>
+
+<p>We want to remove the script we refactor in client.js, and change template a little bit for working in. ( In my case in choose to call Bootstrap as CDN for my responsive CSS, if you don't use it, you can delete the line who mention it into the <b>head</b>) </p>
+
+<p> :warning When you type the path of your index.css, or client.js, you don't have to mention <b><i>'public/index.css</i></b> you can just mention the name of your file so <b><i>'index.css'</i></b>
+
+<h4> index.html </h4>
+
+``` html
+
+<html>
+
+    <head>
+
+        <link href="index.css" rel="stylesheet" type="text/css" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+    </head>
+
+  <body>
+
+    <p class="d-none d-md-block"  id="amountUsers"></p>
+
+    <div class="container">
+          
+      <div class="row">
+           
+
+      
+            <div class="col-lg-12 col-xs-12 col-sm-12" id="main">
+               
+                <p id='server-time'></p>
+      
+                <p id="serverMessages"></p>
+
+                <hr>
+
+                <p class="userMessages"><span class="users"> User say : </span> bla bla bla ! </p>
+               
+                
+
+                
+      
+            </div>
+
+      
+      </div>
+  
+    </div>
+
+  
+    <!-- JAVASCRIPT -->
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  
+</body>
+</html>
+
+```
+
+<p> And finally, here my CSS, but you still can define your own style. </p>
+<p> After all theses changes, if you start the application you should see something like this : </p>
+
+<img src="2.png">
+
+<p> For those who deploy on heroku, it is possible that the changes have compromised the integrity of our application, I advise you to push on the repository to verify that everything is fine.<br> If you followed the instructions I gave,  it should be fine.</p>
+
+<code>git add . </code><br>
+<code>git commit -m " New structure " </code><br>
+<code>git push heroku master</code>
