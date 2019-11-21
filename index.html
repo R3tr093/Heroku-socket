@@ -1,34 +1,50 @@
 <html>
+
+    <head>
+
+        <link href="index.css" rel="stylesheet" type="text/css" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+    </head>
+
   <body>
-    <p id='server-time'></p>
 
-    <p id="serverMessages"></p>
+    <p class="d-none d-md-block"  id="amountUsers"></p>
 
-    <p id="amountUsers"></p>
+    <div class="container">
+          
+      <div class="row">
+           
+
+      
+            <div class="col-lg-12 col-xs-12 col-sm-12" id="main">
+               
+                <p id='server-time'></p>
+      
+                <p id="serverMessages"></p>
+
+                <hr>
+
+                <p class="userMessages"><span class="users"> User say : </span> bla bla bla ! </p>
+               
+                
+
+                
+      
+            </div>
+
+      
+      </div>
+  
+    </div>
+
+  
+    <!-- JAVASCRIPT -->
     
     <script src="/socket.io/socket.io.js"></script>
-    
-    <script type="text/javascript">
-    
-
-      var socket = io();
-
-      var el = document.getElementById('server-time');
-
-
-      socket.on('time', function(timeString) {
-          el.innerHTML = 'Server time: ' + timeString;
-      });
-
-      socket.on('hello', function(message){
-        document.getElementById('serverMessages').textContent = "" + message.content;
-        document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
-      })
-
-
-    
-    
-    </script>
+    <script src="client.js"></script>
   
 </body>
 </html>
+
+
