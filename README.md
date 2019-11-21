@@ -438,4 +438,79 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <hr>
 
-<p>
+<p> Let's doing the same thing for our <b>client.js </b>, I'm gonna explain to you each new line. But in all honesty you should understand by yourself with all the things you already know.</p>
+
+``` javascript
+var socket = io();
+
+var el = document.getElementById('server-time');
+
+
+// Display server time
+socket.on('time', function(timeString) {
+    el.innerHTML = 'Server time: ' + timeString;
+});
+
+
+
+socket.on('hello', function(message){
+  document.getElementById('serverMessages').textContent = "" + message;
+  
+})
+
+// Get the pseudo of the client from the server.
+socket.on('newUser', function(userName) {
+  alert(userName);
+})
+
+// LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
+
+socket.on('logOn', function(count) {
+  alert(count.content + " Has logged in !")
+  
+  document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
+  
+  let result = ""
+
+  for (let i = 0; i < count.users.length; i++) {
+    
+      result = result + "<br>"+ count.users[i] + "<br>";
+    
+  }
+
+  document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + count.amount + "</p>" + result;
+
+
+})
+
+socket.on('logOff', function(userName) {
+  alert(userName.content + " Has been disconnected")
+  
+  document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
+  
+  let result = ""
+
+  for (let i = 0; i < userName.users.length; i++) {
+    
+      result = result + "<br>"+ userName.users[i] + "<br>";
+    
+  }
+
+  document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + userName.amount + "</p>" + result;
+
+})
+
+
+
+``` 
+
+<p> On the <b> " hello " </b> event we just change that thing, we just use message which already contain the user name </p>
+
+<p>For now the on <b>" newUser </b> just give an alert to the user which display his user name, that we also display in the hello message </p>
+
+<p>Finally the logOn and logOff event running the array receveid from the server, and for each pseudo create into the div " <b> usersList </b> every values in the array, at the end of this we also rewrite the amountUsers </p>
+
+<p>That's all, execute the command below to watch the result in your terminal. Open many windows in your browser on <a href="https://localhost:3000" target="_blank"> localhost:3000 </a> to see the result of all of this </p>
+
+
+

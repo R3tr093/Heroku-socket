@@ -3,20 +3,24 @@ var socket = io();
 var el = document.getElementById('server-time');
 
 
-
+// Display server time
 socket.on('time', function(timeString) {
     el.innerHTML = 'Server time: ' + timeString;
 });
+
+
 
 socket.on('hello', function(message){
   document.getElementById('serverMessages').textContent = "" + message;
   
 })
 
-
+// Get the pseudo of the client from the server.
 socket.on('newUser', function(userName) {
   alert(userName);
 })
+
+// LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
 
 socket.on('logOn', function(count) {
   alert(count.content + " Has logged in !")
