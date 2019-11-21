@@ -108,9 +108,9 @@ socket.on('hello', function(message){
 
 <p> Nothing to explain about this, now we will proceed to some modification of our <a href="index.html" target="_blank">index.html</a> </p>
 
-<p>We want to remove the script we refactor in client.js, and change template a little bit for working in. ( In my case in choose to call Bootstrap as CDN for my responsive CSS, if you don't use it, you can delete the line who mention it into the <b>head</b>) </p>
+<p>We want to remove the script we refactor in client.js, and change template a little bit for working in. ( In my case I choose to call Bootstrap as CDN for my responsive CSS, if you don't use it, you can delete the line who mention it into the <b>head</b>) </p>
 
-<p> :warning When you type the path of your index.css, or client.js, you don't have to mention <b><i>'public/index.css</i></b> you can just mention the name of your file so <b><i>'index.css'</i></b>
+<p> :warning: When you type the path of your index.css, or client.js, you don't have to mention <b><i>'public/index.css</i></b> you can just mention the name of your file so <b><i>'index.css'</i></b>
 
 <h4> index.html </h4>
 
@@ -168,6 +168,41 @@ socket.on('hello', function(message){
 ```
 
 <p> And finally, here my CSS, but you still can define your own style. </p>
+
+``` css
+body
+{
+    margin: 0px;
+    height: 100vh;
+}
+
+
+#main
+{
+   
+  border: 1px solid black;
+  margin: 5px;
+  text-align: center;
+
+}
+
+#amountUsers
+{
+    position: absolute;
+    left: 10px;
+    top: 95vh;
+
+}
+
+.userMessages
+{
+    text-align: left;
+}
+
+``` 
+
+
+
 <p> After all theses changes, if you start the application you should see something like this : </p>
 
 <img src="2.png">
