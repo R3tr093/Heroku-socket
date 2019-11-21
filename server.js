@@ -3,6 +3,7 @@
 const express = require('express');
 const socketIO = require('socket.io');
 const path = require('path');
+process.env.PWD = process.cwd();
 
 const PORT = process.env.PORT || 3000;
 const server = express()
@@ -12,7 +13,8 @@ const server = express()
   res.sendFile(__dirname + '/index.html');
 })
 
-.use(express.static('public'))
+.use(express.static(path.join(process.env.PWD, 'public')))
+
 
 .listen(PORT, () => console.log(`Listening on ${ PORT}`))
 
