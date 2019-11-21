@@ -37,7 +37,9 @@ let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny",
 let users = [];
 
 function getRandomInt(max) {
+
   return Math.floor(Math.random() * Math.floor(max));
+
 }
 
 
@@ -51,7 +53,24 @@ io.on('connection', (socket) => {
 
   userName = userName + String(getRandomInt(999))
 
+ // Ensure we can't get two equals userName. ( Even if the probability is really weak ! )
+  for (let i = 0; i < users.length; i++) {
+    
+    if(users[i] === userName)
+      {
+        userName = nameStuffList[getRandomInt(nameStuffList.length)]
+
+        userName = userName + nameList[getRandomInt(nameList.length)]
+
+        userName = userName + String(getRandomInt(999))
+      }
+  }
+
+  socket.pseudo = userName;
+
   users.push(userName)
+
+  hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";
 
  
 
@@ -61,12 +80,16 @@ io.on('connection', (socket) => {
   
   amountUser = String(amountUser)
 
+  // Emit data with user name add new amountUser value to EVERYONE.
+  io.emit("logOn",{content: userName, amount: amountUser })
 
-  // Greetings to arrival
-  io.emit("hello",{ content: hello, amount: amountUser })
+  // Greetings to arrival for the client
+  socket.emit("hello",hello)
+
+  
   
   // Emit for the client an event newUser
-  io.emit("newUser",(userName))
+  socket.emit("newUser",(socket.pseudo))
 
   // On client disconnection
   socket.on('disconnect', () => {
@@ -85,7 +108,8 @@ io.on('connection', (socket) => {
   // Decrement user
   amountUser--;
 
-  io.emit("logOff",{ content: userName, amount: amountUser })
+  // Emit data with user name add new amountUser value to EVERYONE.
+  io.emit("logOff",{ content: socket.pseudo, amount: amountUser })
   
   });
 

@@ -27,11 +27,11 @@
 
 <h3> :file_folder: Reorganization of our file. </h3>
 
-<p> Well for my design i use <a href="https://getbootstrap.com/docs/4.3/layout/grid/"> Bootstrap </a> which is a responsive library, I use CDN to import bootstrap on my project, that should explain the following new line in our <a href="index.html">index.html</a></p>
+<p> Well for my design i use <a href="https://getbootstrap.com/docs/4.3/layout/grid/"> Bootstrap </a> which is a responsive library, that should explain the following new line in our <a href="index.html">index.html</a></p>
 
 ``` html
 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
 
 ```  
 
@@ -121,7 +121,7 @@ socket.on('hello', function(message){
     <head>
 
         <link href="index.css" rel="stylesheet" type="text/css" >
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
         
     </head>
 
@@ -245,4 +245,158 @@ function getRandomInt(max) {
 ```
 
 
-<p>:warning: Disclaimer, this solution is really not the best, but it work for our project because we just want to practice with socket.io, if you want something more efficient use a database, or another good solution is <a href="https://www.npmjs.com/package/express-socket.io-session" target="_blank"> express-socket.io-session </a></p>
+<p>:warning: Disclaimer, the following solution is absolutely not the best, but it work for our project because we just want to practice with socket.io, if you want something more efficient use a database, or another good solution is <a href="https://www.npmjs.com/package/express-socket.io-session" target="_blank"> express-socket.io-session </a></p>
+
+<p>Now let's see how we are going to use our Array to provide usernames, and warn users of logins / logouts. </p>
+
+```javascript
+
+'use strict';
+
+const express = require('express');
+const socketIO = require('socket.io');
+const ent = require('ent');
+
+const path = require('path');
+
+process.env.PWD = process.cwd();
+const PORT = process.env.PORT || 3000;
+const server = express()
+
+
+.get('/', function(req,res){
+  res.sendFile(__dirname + '/index.html');
+})
+
+.use(express.static(path.join(process.env.PWD, 'public')))
+
+
+.listen(PORT, () => console.log(`Listening on ${ PORT}`))
+
+const io = socketIO(server);
+
+
+
+let amountUser = 0;
+
+let hello = "Hello, welcome on our chat service have a good talking !";
+
+// Server provide a random name :
+
+let nameList = ["Strawberry","Pineapple","Pink","Tiger","Wolf","Hero","Legend","Otter","Kitten"];
+
+let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny","Big","Invisible"];
+
+let users = [];
+
+function getRandomInt(max) {
+
+  return Math.floor(Math.random() * Math.floor(max));
+
+}
+
+
+io.on('connection', (socket) => {
+  
+  // Provide random userName, and push it into an array.
+
+  let userName = nameStuffList[getRandomInt(nameStuffList.length)]
+
+  userName = userName + nameList[getRandomInt(nameList.length)]
+
+  userName = userName + String(getRandomInt(999))
+
+ // Ensure we can't get two equals userName. ( Even if the probability is really weak ! )
+  for (let i = 0; i < users.length; i++) {
+    
+    if(users[i] === userName)
+      {
+        userName = nameStuffList[getRandomInt(nameStuffList.length)]
+
+        userName = userName + nameList[getRandomInt(nameList.length)]
+
+        userName = userName + String(getRandomInt(999))
+      }
+  }
+
+  socket.pseudo = userName;
+
+  users.push(userName)
+
+  hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";
+
+ 
+
+  // Increment users amount 
+  
+  amountUser++;
+  
+  amountUser = String(amountUser)
+
+  // Emit data with user name add new amountUser value to EVERYONE.
+  io.emit("logOn",{content: userName, amount: amountUser })
+
+  // Greetings to arrival for the client
+  socket.emit("hello",hello)
+
+  
+  
+  // Emit for the client an event newUser
+  socket.emit("newUser",(socket.pseudo))
+
+  // On client disconnection
+  socket.on('disconnect', () => {
+  
+  // Running the array and remove is name.  
+  for (let i = 0; i < users.length; i++) {
+    
+    if(users[i] === userName)
+      {
+        users.pop(i);
+      }
+    }
+
+    console.log(users)
+
+  // Decrement user
+  amountUser--;
+
+  // Emit data with user name add new amountUser value to EVERYONE.
+  io.emit("logOff",{ content: socket.pseudo, amount: amountUser })
+  
+  });
+
+});
+
+
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+
+```
+
+<p>  :astonished: The code has a lot to change! Do not panic I leave comments that should put you on the track, but I will still explain each new line.</p>
+
+<p> About the creation of a random user name, I have explained everything above, so let's go to the first line so I have not spoken yet.
+
+<code>socket.pseudo = userName;</code><br>
+
+<p>This is the way we keep the data, and that is a temporary solution to do our first steps on socket.io, but that would not be valid for a real project where you should rather resort to a database, or other as I have mentioned earlier.</p>
+
+<p>The fact is that socket is an object to which I have added a userName property, which will be specific to each client because each client has its own socket instance.</p>
+
+<p>Notice that, I also update the hello emission to display the userName.</p>
+
+<code>hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";</code><br>
+
+<p>This line emit a <b>" logOn "</b> event to every clients </p>
+
+<code>io.emit("logOn",{content: userName, amount: amountUser })</code><br>
+
+<p>I passed in the new amount of user, and the name of the new user who looged in. </p>
+<p>We have to use theses data in our <b>index.html</b> later. </p>
+
+<p>As you can see, i used <b>io.emit</b> instead of <b>socket.emit</b></p>
+
+<p>Well remember that, socket.emit should emit for the specific client, and io.emit will broadcast to everyone. <br> this image demonstrates this behavior.<p>
+
+<img src="3.png">

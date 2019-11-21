@@ -8,15 +8,21 @@ socket.on('time', function(timeString) {
 });
 
 socket.on('hello', function(message){
-  document.getElementById('serverMessages').textContent = "" + message.content;
-  document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
+  document.getElementById('serverMessages').textContent = "" + message;
+  
 })
 
+
 socket.on('newUser', function(userName) {
-  alert(userName)
+  alert(userName);
+})
+
+socket.on('logOn', function(count) {
+  alert(count.content + " Has logged in !")
+  document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
 })
 
 socket.on('logOff', function(userName) {
   alert(userName.content + " Has been disconnected")
-  document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
+  document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
 })
