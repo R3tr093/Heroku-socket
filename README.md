@@ -44,3 +44,35 @@
 <img src="1.png">
 
 <p> This beautiful new structure requires some modifications to our server.js file, let me show you what's new </p>
+
+``` javascript
+
+'use strict';
+
+
+
+// Nothing change before this...
+
+
+process.env.PWD = process.cwd();
+const PORT = process.env.PORT || 3000;
+const server = express()
+
+// When user is connected on the index, we send index.html as template
+.get('/', function(req,res){
+  res.sendFile(__dirname + '/index.html');
+})
+
+// And we provide a folder named as 'public' who contains our client.js and index.css
+.use(express.static(path.join(process.env.PWD, 'public')))
+
+
+.listen(PORT, () => console.log(`Listening on ${ PORT}`))
+
+const io = socketIO(server);
+
+// Nothing change after this...
+
+```
+
+<p> I hope the comment has been helpful so everything is say. If your lost take a look on <a href="server.js">server.js</a>.</p>
