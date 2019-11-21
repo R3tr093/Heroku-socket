@@ -47,7 +47,7 @@
 
 <img src="1.png">
 
-<p> This beautiful new structure requires some modifications to our server.js file, let me show you what's new </p>
+<p> This beautiful new structure requires some modifications to our server.js file, let me show you what's new : </p>
 
 ``` javascript
 
@@ -62,12 +62,12 @@ process.env.PWD = process.cwd();
 const PORT = process.env.PORT || 3000;
 const server = express()
 
-// When user is connected on the index, we send index.html as template
+// When user is try to get the root of our application, we send index.html as template
 .get('/', function(req,res){
   res.sendFile(__dirname + '/index.html');
 })
 
-// And we provide a folder named as 'public' who contains our client.js and index.css
+// And we provide a folder to use named as 'public' who contains our client.js and index.css
 .use(express.static(path.join(process.env.PWD, 'public')))
 
 
@@ -79,4 +79,29 @@ const io = socketIO(server);
 
 ```
 
-<p> I hope the comment has been helpful so everything is say. If your lost take a look on <a href="server.js">server.js</a>.</p>
+<p> I hope the comments has been helpful so everything is say. If your lost take a look on <a href="server.js" target="_blank">server.js</a>.</p>
+
+<p>In the file <a href="https://github.com/R3tr093/Heroku-socket/blob/emissions/public/client.js" target="_blank"> client.js </a>, copy the javascript of the index.html, and paste it into your client.js </p>
+
+<p><i> You have to copy / paste this : </i></p>
+
+<h4> client.js </h4>
+
+``` javascript
+
+var socket = io();
+
+var el = document.getElementById('server-time');
+
+
+socket.on('time', function(timeString) {
+    el.innerHTML = 'Server time: ' + timeString;
+});
+
+socket.on('hello', function(message){
+  document.getElementById('serverMessages').textContent = "" + message.content;
+  document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
+
+})
+
+``` 
