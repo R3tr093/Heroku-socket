@@ -39,9 +39,9 @@
 
 <p>We would like to put our client script in a file and create a CSS file for our index, it would be more pleasant for us to store this in a folder, so we will create a public folder in the root of our project. </p>
 
-<code> mkdir public </code>
-<code> cd public </code>
-<code> touch index.css && touch index.js </code>
+<code> mkdir public </code><br>
+<code> cd public </code><br>
+<code> touch index.css && touch index.js </code><br>
 
 <p>The important thing, is that your structure looks like this: </p>
 
