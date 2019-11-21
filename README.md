@@ -169,6 +169,8 @@ socket.on('hello', function(message){
 
 <p> And finally, here my CSS, but you still can define your own style. </p>
 
+<h4> index.css </h4>
+
 ``` css
 body
 {
@@ -212,3 +214,37 @@ body
 <code>git add . </code><br>
 <code>git commit -m " New structure " </code><br>
 <code>git push heroku master</code>
+
+<hr>
+
+<h3> :registered: Generate an random name for each users, and announce a new arrival on the chat </h3>
+
+<p>Well, we're ready and we have a lot of work to do, so before all of that we need a new dependencie named as " <b> ent </b>", type in your terminal the command below : </p>
+
+<code>npm install --save ent </code>
+
+<br>
+
+<p> In our server.js we add the following line : </p>
+
+<p>First we will create two arrays that will allow us to generate random nicks, I chose the following values ​​but free to you to resort to more creativity for this step.</p>
+
+<code>let nameList = ["Strawberry","Pineapple","Pink","Tiger","Wolf","Hero","Legend","Otter","Kitten"];</code><br>
+<code> let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny","Big","Invisible"];</code><br>
+
+<p>As long as you are also creating an empty array that will contain all the nicks.</p>
+
+<code> let users = [];</code><br>
+
+<p>Now we need a function to return a random number from a range, so easy : </p>
+
+```javascript
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+```
+
+
+<p>:warning: Disclaimer, this solution is really not the best, but it work for our project because we just want to practice with socket.io, if you want something more efficient use a database, or another good solution is <a href="https://www.npmjs.com/package/express-socket.io-session" target="_blank"> express-socket.io-session </a></p>
