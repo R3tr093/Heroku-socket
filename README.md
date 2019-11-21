@@ -344,7 +344,7 @@ io.on('connection', (socket) => {
   amountUser = String(amountUser)
 
   // Emit data with user name add new amountUser value to EVERYONE.
-  io.emit("logOn",{content: userName, amount: amountUser })
+  io.emit("logOn",{content: userName, amount: amountUser, users: users })
 
   // Greetings to arrival for the client
   socket.emit("hello",hello)
@@ -355,26 +355,31 @@ io.on('connection', (socket) => {
   socket.emit("newUser",(socket.pseudo))
 
   // On client disconnection
-  io.on('disconnect', () => {
+  socket.on('disconnect', () => {
   
-  // Running the array and remove is name.  
-  for (let i = 0; i < users.length; i++) {
-    
-    if(users[i] === userName)
-      {
-        users.pop(i);
-      }
-    }
 
-    console.log(users)
+
+  // Running the array search the user name of disconnected client and remove is name. 
+  
+  for( var i = 0; i < users.length; i++){ 
+   
+    if ( users[i] === socket.pseudo) {
+   
+      users.splice(i, 1); 
+   
+    }
+  }
 
   // Decrement user
   amountUser--;
 
   // Emit data with user name add new amountUser value to EVERYONE.
-  io.emit("logOff",{ content: socket.pseudo, amount: amountUser })
+  io.emit("logOff",{ content: socket.pseudo, amount: amountUser, users: users})
+
+  
   
   });
+
 
 });
 
@@ -412,17 +417,17 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 <p>By the code below, on the <b> disconnect </b> emission I run my array which contains all users and I remove the user  who has been disconnected. </p>
 
 ``` javascript
-
-  // Running the array and remove is name.  
-  for (let i = 0; i < users.length; i++) {
-    
-    if(users[i] === userName)
-      {
-        users.pop(i);
-      }
+  
+  // Running the array search the user name of disconnected client and remove is name. 
+  
+  for( var i = 0; i < users.length; i++){ 
+   
+    if ( users[i] === socket.pseudo) {
+   
+      users.splice(i, 1); 
+   
     }
-
-    console.log(users)
+  }
 
 ```
 

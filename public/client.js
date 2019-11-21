@@ -17,13 +17,13 @@ socket.on('hello', function(message){
 
 // Get the pseudo of the client from the server.
 socket.on('newUser', function(userName) {
-  alert(userName);
+  console.log(userName);
 })
 
 // LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
 
 socket.on('logOn', function(count) {
-  alert(count.content + " Has logged in !")
+  console.log(count.content + " Has logged in !")
   
   document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
   
@@ -41,7 +41,7 @@ socket.on('logOn', function(count) {
 })
 
 socket.on('logOff', function(userName) {
-  alert(userName.content + " Has been disconnected")
+  console.log(userName.content + " Has been disconnected")
   
   document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
   

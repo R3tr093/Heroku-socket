@@ -94,22 +94,26 @@ io.on('connection', (socket) => {
   // On client disconnection
   socket.on('disconnect', () => {
   
-  // Running the array and remove is name.  
-  for (let i = 0; i < users.length; i++) {
-    
-    if(users[i] === userName)
-      {
-        users.pop(i);
-      }
-    }
 
-    console.log(users)
+
+  // Running the array and remove is name. 
+  
+  for( var i = 0; i < users.length; i++){ 
+   
+    if ( users[i] === socket.pseudo) {
+   
+      users.splice(i, 1); 
+   
+    }
+   }
 
   // Decrement user
   amountUser--;
 
   // Emit data with user name add new amountUser value to EVERYONE.
   io.emit("logOff",{ content: socket.pseudo, amount: amountUser, users: users})
+
+  
   
   });
 
