@@ -27,9 +27,13 @@
 
 <h3> :file_folder: Reorganization of our file. </h3>
 
-<p> Well for my design i use <a href="https://getbootstrap.com/docs/4.3/layout/grid/"> Bootstrap </a> which is a responsive library, I use CDN to import bootstrap on my project, that should explain the following new line in our <a href="index.html">index.html</a></p>.
+<p> Well for my design i use <a href="https://getbootstrap.com/docs/4.3/layout/grid/"> Bootstrap </a> which is a responsive library, I use CDN to import bootstrap on my project, that should explain the following new line in our <a href="index.html">index.html</a></p>
 
-<code> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> </code>
+``` html
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+```  
 
 <p> I don't gonna explain to you my CSS logic, because is not the objective of the repository, feel free to build your own design. </p>
 
