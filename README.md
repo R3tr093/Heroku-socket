@@ -11,11 +11,9 @@
 
 <p>On this branch we will take care of the following points : </p>
 
-<p><i> :memo: Generate a random name to an user. </i></p>
+<p><i> :memo: Generate a random name to an user and register it in our server.</i></p>
 
-<p><i> :memo: Display an user message with his date time Day/Month/Year Hour/minute. </i></p>
-
-<p><i> :memo: Display a message on the chat where an user is connected or disconnected. </i></p>
+<p><i> :memo: Notice all users when an user log in or log out. </i></p>
 
 <p><i> :memo: Display list of users connected. </i></p>
 
@@ -345,7 +343,7 @@ io.on('connection', (socket) => {
   socket.emit("newUser",(socket.pseudo))
 
   // On client disconnection
-  socket.on('disconnect', () => {
+  io.on('disconnect', () => {
   
   // Running the array and remove is name.  
   for (let i = 0; i < users.length; i++) {
@@ -374,7 +372,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 ```
 
-<p>  :astonished: The code has a lot to change! Do not panic I leave comments that should put you on the track, but I will still explain each new line.</p>
+<p>  :astonished: The code has a lot to change ! Do not panic I leave comments that should put you on the track, but I will still explain each new line.</p>
 
 <p> About the creation of a random user name, I have explained everything above, so let's go to the first line so I have not spoken yet.
 
@@ -392,11 +390,34 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <code>io.emit("logOn",{content: userName, amount: amountUser })</code><br>
 
-<p>I passed in the new amount of user, and the name of the new user who looged in. </p>
+<p>I passed in the new amount of user, and the name of the new user who logged in. </p>
 <p>We have to use theses data in our <b>index.html</b> later. </p>
 
 <p>As you can see, i used <b>io.emit</b> instead of <b>socket.emit</b></p>
 
-<p>Well remember that, socket.emit should emit for the specific client, and io.emit will broadcast to everyone. <br> this image demonstrates this behavior.<p>
+<p>Well remember that, socket.emit should emit for the specific client, and io.emit will broadcast to everyone. </p>
 
-<img src="3.png">
+<p>By the code below, on the <b> disconnect </b> emission I run my array which contains all users and I remove the user  who has been disconnected. </p>
+
+``` javascript
+
+  // Running the array and remove is name.  
+  for (let i = 0; i < users.length; i++) {
+    
+    if(users[i] === userName)
+      {
+        users.pop(i);
+      }
+    }
+
+    console.log(users)
+
+```
+
+<p>Finally I broadcast that, an user has been disconnected with his name by the <b>logOff</b> emission.</p>
+
+<code> io.emit("logOff",{ content: socket.pseudo, amount: amountUser })}); </code><br>
+
+<p><i>Don't be afraid we don't change the <b> index.html </b> so much !  :sweat_smile: </i></p>
+
+<hr>
