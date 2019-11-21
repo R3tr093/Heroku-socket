@@ -403,7 +403,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 <code>hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";</code><br>
 
-<p>This line emit a <b>" logOn "</b> event to every clients </p>
+<p>This line emit a <b>" logOn "</b> event to every clients.</p>
 
 <code>io.emit("logOn",{content: userName, amount: amountUser })</code><br>
 
