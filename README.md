@@ -146,7 +146,10 @@ socket.on('hello', function(message){
 
                 <hr>
 
-                <p class="userMessages"><span class="users"> User say : </span> bla bla bla ! </p>
+                <div id="chat">
+
+                </div>
+             
                
                 
 
@@ -167,6 +170,9 @@ socket.on('hello', function(message){
   
 </body>
 </html>
+
+
+
 
 
 
@@ -210,6 +216,20 @@ body
     text-align: left;
 }
 
+p.infoOn
+{
+    text-align: left;
+    font-style: italic;
+    color: green;
+}
+
+p.infoOff
+{
+    text-align: left;
+    font-style: italic;    
+    color: red;
+
+}
 
 ``` 
 
@@ -418,7 +438,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 ``` javascript
   
- var socket = io();
+var socket = io();
 
 var el = document.getElementById('server-time');
 
@@ -443,7 +463,14 @@ socket.on('newUser', function(userName) {
 // LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
 
 socket.on('logOn', function(count) {
-  console.log(count.content + " Has logged in !")
+  
+  let info = document.createElement("p");
+  
+  info.setAttribute("class", "infoOn");
+  
+  info.textContent = count.content + " joined the party !";
+
+  document.getElementById("chat").prepend(info)
   
   document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
   
@@ -461,7 +488,20 @@ socket.on('logOn', function(count) {
 })
 
 socket.on('logOff', function(userName) {
-  console.log(userName.content + " Has been disconnected")
+
+  // We create a paragraph node 
+
+  let info = document.createElement("p");
+  
+  info.setAttribute("class", "infoOff");
+
+  // We notice this user has been disconnected into textContent property of the paragraph
+  
+  info.textContent = userName.content + " Has been disconnected.";
+
+  // We push that new paragraph at the beginnong of the chat.
+
+  document.getElementById("chat").prepend(info)
   
   document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
   

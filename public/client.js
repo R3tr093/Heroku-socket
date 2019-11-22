@@ -23,7 +23,14 @@ socket.on('newUser', function(userName) {
 // LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
 
 socket.on('logOn', function(count) {
-  console.log(count.content + " Has logged in !")
+  
+  let info = document.createElement("p");
+  
+  info.setAttribute("class", "infoOn");
+  
+  info.textContent = count.content + " joined the party !";
+  
+  document.getElementById("chat").prepend(info)
   
   document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
   
@@ -41,7 +48,14 @@ socket.on('logOn', function(count) {
 })
 
 socket.on('logOff', function(userName) {
-  console.log(userName.content + " Has been disconnected")
+
+  let info = document.createElement("p");
+  
+  info.setAttribute("class", "infoOff");
+  
+  info.textContent = userName.content + " Has been disconnected.";
+
+  document.getElementById("chat").prepend(info)
   
   document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
   

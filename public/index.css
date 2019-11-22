@@ -28,3 +28,19 @@ body
 {
     text-align: left;
 }
+
+p.infoOn
+{
+    text-align: left;
+    font-style: italic;
+    color: green;
+}
+
+p.infoOff
+{
+    text-align: left;
+    font-style: italic;    
+    color: red;
+
+}
+
