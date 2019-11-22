@@ -57,7 +57,7 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 
 <code> node -v </code>
 
-<p>Also, you should insert this array. </p>
+<p>Also, you should insert this array.</p>
  
 <code>
 "engines": {
