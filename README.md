@@ -106,9 +106,9 @@ socket.on('hello', function(message){
 
 <p> Nothing to explain about this, now we will proceed to some modification of our <a href="index.html" target="_blank">index.html</a> </p>
 
-<p>We want to remove the script we refactor in client.js, and change template a little bit for working in. ( In my case I choose to call Bootstrap as CDN for my responsive CSS, if you don't use it, you can delete the line who mention it into the <b>head</b>) </p>
+<p>We want to remove the script in the <a href="index.html">index.html</a> and refactor this in our new file <b>client.js</b>, also we have to change template a little bit for working in. </p>
 
-<p> :warning: When you type the path of your index.css, or client.js, you don't have to mention <b><i>'public/index.css</i></b> you can just mention the name of your file so <b><i>'index.css'</i></b>
+<p> :warning: When you type the path of your index.css, or client.js, you don't have to mention <b><i>'public/index.css</i></b> you can just mention the name of your file so <b><i>'index.css'</i></b> or <b>client.js</b></p>
 
 <h4> index.html </h4>
 
@@ -418,36 +418,7 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 ``` javascript
   
-  // Running the array search the user name of disconnected client and remove is name. 
-  
-  for( var i = 0; i < users.length; i++){ 
-   
-    if ( users[i] === socket.pseudo) {
-   
-      users.splice(i, 1); 
-   
-    }
-  }
-
-```
-
-<p>Finally I broadcast that, an user has been disconnected with his name by the <b>logOff</b> emission.</p>
-
-<code> io.emit("logOff",{ content: socket.pseudo, amount: amountUser })}); </code><br>
-
-<p><i>Don't be afraid we don't change the <b> client.js </b> so much !  :sweat_smile: </i></p>
-
-<hr>
-
-<h3> client.js</h3>
-
-<hr>
-
-<p> Let's doing the same thing for our <b>client.js </b>, I'm gonna explain to you each new line. But in all honesty you should understand by yourself with all the things you already know.</p>
-
-``` javascript
-
-var socket = io();
+ var socket = io();
 
 var el = document.getElementById('server-time');
 
@@ -505,6 +476,9 @@ socket.on('logOff', function(userName) {
   document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + userName.amount + "</p>" + result;
 
 })
+
+
+  
 
 ``` 
 
