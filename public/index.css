@@ -2,34 +2,6 @@ body
 {
     margin: 0px;
     height: 100vh;
-}
-
-
-#main
-{
-   
-  border: 1px solid black;
-  margin: 5px;
-  text-align: center;
-
-}
-
-#amountUsers
-{
-    position: absolute;
-    left: 10px;
-    top: 95vh;
-
-}
-
-.userMessages
-{
-    text-align: left;
-}
-body
-{
-    margin: 0px;
-    height: 100vh;
     overflow: hidden;
     display: flex;
 }
@@ -71,6 +43,3 @@ p.infoOff
     color: red;
 
 }
-
-
-
