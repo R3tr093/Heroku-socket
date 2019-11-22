@@ -1,50 +1,57 @@
+
 <html>
 
-    <head>
+  <head>
 
-        <link href="index.css" rel="stylesheet" type="text/css" >
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
-    </head>
-
-  <body>
-
-    <p class="d-none d-md-block"  id="amountUsers"></p>
-
-    <div class="container">
-          
-      <div class="row">
-           
-
+      <link href="index.css" rel="stylesheet" type="text/css" >
+      <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
       
-            <div class="col-lg-12 col-xs-12 col-sm-12" id="main">
-               
-                <p id='server-time'></p>
-      
-                <p id="serverMessages"></p>
+  </head>
 
-                <hr>
+<body>
 
-                <p class="userMessages"><span class="users"> User say : </span> bla bla bla ! </p>
-               
-                
+  <div class="d-none d-md-block col-1" id="usersList">
 
-                
-      
-            </div>
+      <p id="amountUsers"></p>
 
-      
-      </div>
+  </div>
   
+
+  <div class="container">
+        
+    <div class="row">
+         
+
+    
+          <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12" id="main">
+             
+              <p id='server-time'></p>
+    
+              <p id="serverMessages"></p>
+
+              <hr>
+
+              <div id="chat">
+
+              </div>
+           
+             
+              
+
+              
+    
+          </div>
+
+    
     </div>
 
+  </div>
+
+
+  <!-- JAVASCRIPT -->
   
-    <!-- JAVASCRIPT -->
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="client.js"></script>
-  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+
 </body>
 </html>
-
-
