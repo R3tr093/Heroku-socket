@@ -2,7 +2,7 @@
 
 const express = require('express');
 const socketIO = require('socket.io');
-
+const ent = require('ent');
 
 const path = require('path');
 
@@ -108,7 +108,7 @@ io.on('connection', (socket) => {
   // Broadcast messages
   socket.on('newMessage',(socket) => {
     
-
+      socket.userMsg = ent.encode(socket.userMsg)
       var d = new Date();
       var n = d.toLocaleTimeString();
 
