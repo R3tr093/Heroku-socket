@@ -227,4 +227,4 @@ If you log off, and close the page, you will get a message stating that a client
 <p> You are free to continue by yourself or ... <br>
  If you want to continue this project with me, you can go to the branch called <i><a href="https://github.com/R3tr093/Heroku-socket/tree/connections">connections </a></i> . </p>
 
- <p> In this branch I will give you more informations about the meaning of our starter code, and guide you to build the very first step of your chat services. </p>
+ <p> In this branch I will give you more informations about the meaning of our starter code, and guide you to build the very first step of your chat services.</p>
