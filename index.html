@@ -1,57 +1,63 @@
-
 <html>
 
-  <head>
+    <head>
 
-      <link href="index.css" rel="stylesheet" type="text/css" >
-      <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
-      
-  </head>
-
-<body>
-
-  <div class="d-none d-md-block col-1" id="usersList">
-
-      <p id="amountUsers"></p>
-
-  </div>
-  
-
-  <div class="container">
+        <link href="index.css" rel="stylesheet" type="text/css" >
+        <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
         
-    <div class="row">
-         
+    </head>
 
+  <body>
+
+    <div class="d-none d-md-block" id="usersList">
+
+        <p id="amountUsers"></p>
+
+    </div>
     
-          <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12" id="main">
-             
-              <p id='server-time'></p>
-    
-              <p id="serverMessages"></p>
 
-              <hr>
-
-              <div id="chat">
-
-              </div>
+    <div class="container">
+          
+      <div class="row">
            
+
+      
+            <div class="col-lg-10 col-md-12 col-xs-12 col-sm-12" id="main">
+               
+                <p id='server-time'></p>
+      
+                <p id="serverMessages"></p>
+
+                <hr>
+
+                <div id="chat">
+
+                </div>
              
-              
+                <hr>
+                <div id="userFrame">
 
-              
-    
-          </div>
 
-    
+                  <label for="textArea">Write your message here : </label>
+                  <textarea class="form-control" id="textArea" rows="3"></textarea>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" id="sentBtn">Sent the message</button>
+
+                </div>
+
+                
+      
+            </div>
+
+      
+      </div>
+  
     </div>
 
-  </div>
-
-
-  <!-- JAVASCRIPT -->
   
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="client.js"></script>
-
+    <!-- JAVASCRIPT -->
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  
 </body>
 </html>
