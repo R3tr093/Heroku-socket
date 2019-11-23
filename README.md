@@ -11,11 +11,9 @@
 
 <p>On this branch we will take care of the following points : </p>
 
-<p><i> :memo: Generate a random name to an user and register it in our server.</i></p>
+<p><i> :memo: Receive messages on server</i></p>
 
-<p><i> :memo: Notice all users when an user log in or log out. </i></p>
-
-<p><i> :memo: Display list of users connected. </i></p>
+<p><i> :memo: Secure all messages, and add a date for every messages sent. </i></p>
 
 <p><i> :memo: And finally, deploy our change on Heroku. </i> </p>
 
@@ -23,94 +21,24 @@
 
 
 
-<h3> :file_folder: Reorganization of our file. </h3>
+<h3>  :question:  How it works ? </h3>
 
-<p> Well for my design i use <a href="https://getbootstrap.com/docs/4.3/layout/grid/"> Bootstrap </a> which is a responsive library, that should explain the following new line in our <a href="index.html">index.html</a></p>
+<hr>
 
-``` html
+<p>It's really easy, we listen to a message from an user, and we gonna use <b> ent </b> a new package that allow us to secure message from malicious javascript insertion on server.</p>
 
- <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+<p>When the message is receveived securely we use array to keep an eye on the 100 last messages, then we can show to an user who just has come what is been saying in the 100 messages before his connection, sound good right ?</p>
 
-```  
+<p>A last thing, we want to create a date for each messages, and when we got all of this we can broadcast a rewriting of the dom ! </p>
 
-<p> I don't gonna explain to you my CSS logic, because is not the objective of the repository, feel free to build your own design. </p>
-
-<p>We would like to put our client script in a file and create a CSS file for our index, it would be more pleasant for us to store this in a folder, so we will create a public folder in the root of our project. </p>
-
-<code> mkdir public </code><br>
-<code> cd public </code><br>
-<code> touch index.css && touch index.js </code><br>
-
-<p>The important thing, is that your structure looks like this: </p>
-
-<img src="1.png">
-
-<p> This beautiful new structure requires some modifications to our server.js file, let me show you what's new : </p>
-
-``` javascript
-
-'use strict';
+<p>So let's code !, my entire folder and the files which is contain is actually the same from the branch name : <a href="https://github.com/R3tr093/Heroku-socket/tree/emissions">emissions</a></p>
 
 
+<h3>  :construction_worker: Build and Build</h3>
 
-// Nothing change before this...
+<p>Okay, so now we know what we want to do, and for that we have to create a new area in our html template, so open <a href="index.html">index.html</a></p>
 
-
-process.env.PWD = process.cwd();
-const PORT = process.env.PORT || 3000;
-const server = express()
-
-// When user is try to get the root of our application, we send index.html as template
-.get('/', function(req,res){
-  res.sendFile(__dirname + '/index.html');
-})
-
-// And we provide a folder to use named as 'public' who contains our client.js and index.css
-.use(express.static(path.join(process.env.PWD, 'public')))
-
-
-.listen(PORT, () => console.log(`Listening on ${ PORT}`))
-
-const io = socketIO(server);
-
-// Nothing change after this...
-
-```
-
-<p> I hope the comments has been helpful so everything is say. If your lost take a look on <a href="server.js" target="_blank">server.js</a>.</p>
-
-<p>In the file <a href="https://github.com/R3tr093/Heroku-socket/blob/emissions/public/client.js" target="_blank"> client.js </a>, copy the javascript of the index.html, and paste it into your client.js </p>
-
-<p><i> You have to copy / paste this : </i></p>
-
-<h4> client.js </h4>
-
-``` javascript
-
-var socket = io();
-
-var el = document.getElementById('server-time');
-
-
-socket.on('time', function(timeString) {
-    el.innerHTML = 'Server time: ' + timeString;
-});
-
-socket.on('hello', function(message){
-  document.getElementById('serverMessages').textContent = "" + message.content;
-  document.getElementById('amountUsers').textContent = "Users connected : " + message.amount;
-
-})
-
-``` 
-
-<p> Nothing to explain about this, now we will proceed to some modification of our <a href="index.html" target="_blank">index.html</a> </p>
-
-<p>We want to remove the script in the <a href="index.html">index.html</a> and refactor this in our new file <b>client.js</b>, also we have to change template a little bit for working in. </p>
-
-<p> :warning: When you type the path of your index.css, or client.js, you don't have to mention <b><i>'public/index.css</i></b> you can just mention the name of your file so <b><i>'index.css'</i></b> or <b>client.js</b></p>
-
-<h4> index.html </h4>
+<p>After the div named chat i added a new element named userFrame, take a lokk on it. </p>
 
 ``` html
 
@@ -150,8 +78,18 @@ socket.on('hello', function(message){
 
                 </div>
              
-               
+                <!-- Here the new element we insert -->
+
+                <hr>
                 
+                <div id="userFrame">
+
+
+                  <label for="textArea">Write your message here : </label>
+                  <textarea class="form-control" id="textArea" rows="3"></textarea>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" id="sentBtn">Sent the message</button>
+
+                </div>
 
                 
       
@@ -172,16 +110,9 @@ socket.on('hello', function(message){
 </html>
 
 
-
-
-
-
-
 ```
 
-<p> And finally, here my CSS, but you still can define your own style. </p>
-
-<h4> index.css </h4>
+<p> And surprise theses new changes on our template come with new changes for our css too ! Nothing really important to explain there i just give the code who setting my template for working on the same view.</p>
 
 ``` css
 
@@ -231,323 +162,49 @@ p.infoOff
 
 }
 
-``` 
-
-
-
-<p> After all theses changes, if you start the application you should see something like this : </p>
-
-<img src="2.png">
-
-<p> For those who deploy on heroku, it is possible that the changes have compromised the integrity of our application, I advise you to push on the repository to verify that everything is fine.<br> If you followed the instructions I gave,  it should be fine.</p>
-
-<code>git add . </code><br>
-<code>git commit -m " New structure " </code><br>
-<code>git push heroku master</code>
-
-<hr>
-
-<h3> :registered: Generate an random name for each users, and announce a new arrival on the chat </h3>
-
-<hr>
-
-<br>
-
-<p> In our server.js we add the following line : </p>
-
-<p>First we will create two arrays that will allow us to generate random nicks, I chose the following values ​​but free to you to resort to more creativity for this step.</p>
-
-<code>let nameList = ["Strawberry","Pineapple","Pink","Tiger","Wolf","Hero","Legend","Otter","Kitten"];</code><br>
-<code> let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny","Big","Invisible"];</code><br>
-
-<p>As long as you are also creating an empty array that will contain all the nicks.</p>
-
-<code> let users = [];</code><br>
-
-<p>Now we need a function to return a random number from a range, so easy : </p>
-
-```javascript
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+textarea
+{
+    max-width: 90%;
+    width: 90%;
+    min-width: 90%;
+    margin: 5%;
+    margin-top: 3%;
+    height: 20vh;
+    max-height: 20vh;
+    padding: 8px;
 }
 
-```
-
-
-<p>:warning: Disclaimer, the following solution is absolutely not the best, but it work for our project because we just want to practice with socket.io, if you want something more efficient use a database, or another good solution is <a href="https://www.npmjs.com/package/express-socket.io-session" target="_blank"> express-socket.io-session </a></p>
-
-<p>Now let's see how we are going to use our Array to provide usernames, and warn users of logins / logouts. </p>
-
-```javascript
-
-'use strict';
-
-const express = require('express');
-const socketIO = require('socket.io');
-const ent = require('ent');
-
-const path = require('path');
-
-process.env.PWD = process.cwd();
-const PORT = process.env.PORT || 3000;
-const server = express()
-
-
-.get('/', function(req,res){
-  res.sendFile(__dirname + '/index.html');
-})
-
-.use(express.static(path.join(process.env.PWD, 'public')))
-
-
-.listen(PORT, () => console.log(`Listening on ${ PORT}`))
-
-const io = socketIO(server);
-
-
-
-let amountUser = 0;
-
-let hello = "Hello, welcome on our chat service have a good talking !";
-
-// Server provide a random name :
-
-let nameList = ["Strawberry","Pineapple","Pink","Tiger","Wolf","Hero","Legend","Otter","Kitten"];
-
-let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny","Big","Invisible"];
-
-let users = [];
-
-function getRandomInt(max) {
-
-  return Math.floor(Math.random() * Math.floor(max));
+#sentBtn
+{
+    background-color: #1a73e8;
+    color: white;
+    text-align: center;
+    width: 90%;
+    position: relative;
+    top: -30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-color:  #1a73e8;
+    border-radius: 6px;
 
 }
 
+#sentBtn:hover
+{
+    background-color: #1a73e8;
+    color: white;
+    box-shadow: 1px 2px 1px 2px lightgray;
+    text-align: center;
+    width: 90%;
+    position: relative;
+    top: -30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
 
-io.on('connection', (socket) => {
-  
-  // Provide random userName, and push it into an array.
-
-  let userName = nameStuffList[getRandomInt(nameStuffList.length)]
-
-  userName = userName + nameList[getRandomInt(nameList.length)]
-
-  userName = userName + String(getRandomInt(999))
-
- // Ensure we can't get two equals userName. ( Even if the probability is really weak ! )
-  for (let i = 0; i < users.length; i++) {
-    
-    if(users[i] === userName)
-      {
-        userName = nameStuffList[getRandomInt(nameStuffList.length)]
-
-        userName = userName + nameList[getRandomInt(nameList.length)]
-
-        userName = userName + String(getRandomInt(999))
-      }
-  }
-
-  socket.pseudo = userName;
-
-  users.push(userName)
-
-  hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";
-
- 
-
-  // Increment users amount 
-  
-  amountUser++;
-  
-  amountUser = String(amountUser)
-
-  // Emit data with user name add new amountUser value to EVERYONE.
-  io.emit("logOn",{content: userName, amount: amountUser, users: users })
-
-  // Greetings to arrival for the client
-  socket.emit("hello",hello)
-
-  
-  
-  // Emit for the client an event newUser
-  socket.emit("newUser",(socket.pseudo))
-
-  // On client disconnection
-  socket.on('disconnect', () => {
-  
-
-
-  // Running the array search the user name of disconnected client and remove is name. 
-  
-  for( var i = 0; i < users.length; i++){ 
-   
-    if ( users[i] === socket.pseudo) {
-   
-      users.splice(i, 1); 
-   
-    }
-  }
-
-  // Decrement user
-  amountUser--;
-
-  // Emit data with user name add new amountUser value to EVERYONE.
-  io.emit("logOff",{ content: socket.pseudo, amount: amountUser, users: users})
-
-  
-  
-  });
-
-
-});
-
-
-
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+}
 
 ```
-
-<p>  :astonished: The code has a lot to change ! Do not panic I leave comments that should put you on the track, but I will still explain each new line.</p>
-
-<p> About the creation of a random user name, I have explained everything above, so let's go to the first line so I have not spoken yet.
-
-<code>socket.pseudo = userName;</code><br>
-
-<p>This is the way we keep the data, and that is a temporary solution to do our first steps on socket.io, but that would not be valid for a real project where you should rather resort to a database, or other as I have mentioned earlier.</p>
-
-<p>The fact is that socket is an object to which I have added a userName property, which will be specific to each client because each client has its own socket instance.</p>
-
-<p>Notice that, I also update the hello emission to display the userName.</p>
-
-<code>hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";</code><br>
-
-<p>This line emit a <b>" logOn "</b> event to every clients.</p>
-
-<code>io.emit("logOn",{content: userName, amount: amountUser })</code><br>
-
-<p>I passed in the new amount of user, and the name of the new user who logged in. </p>
-<p>We have to use theses data in our <b>index.html</b> later. </p>
-
-<p>As you can see, i used <b>io.emit</b> instead of <b>socket.emit</b></p>
-
-<p>Well remember that, socket.emit should emit for the specific client, and io.emit will broadcast to everyone. </p>
-
-<p>By the code below, on the <b> disconnect </b> emission I run my array which contains all users and I remove the user  who has been disconnected. </p>
-
-``` javascript
-  
-var socket = io();
-
-var el = document.getElementById('server-time');
-
-
-// Display server time
-socket.on('time', function(timeString) {
-    el.innerHTML = 'Server time: ' + timeString;
-});
-
-
-
-socket.on('hello', function(message){
-  document.getElementById('serverMessages').textContent = "" + message;
-  
-})
-
-// Get the pseudo of the client from the server.
-socket.on('newUser', function(userName) {
-  console.log(userName);
-})
-
-// LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
-
-socket.on('logOn', function(count) {
-  
-  let info = document.createElement("p");
-  
-  info.setAttribute("class", "infoOn");
-  
-  info.textContent = count.content + " joined the party !";
-
-  document.getElementById("chat").prepend(info)
-  
-  document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
-  
-  let result = ""
-
-  for (let i = 0; i < count.users.length; i++) {
-    
-      result = result + "<br>"+ count.users[i] + "<br>";
-    
-  }
-
-  document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + count.amount + "</p>" + result;
-
-
-})
-
-socket.on('logOff', function(userName) {
-
-  // We create a paragraph node 
-
-  let info = document.createElement("p");
-  
-  info.setAttribute("class", "infoOff");
-
-  // We notice this user has been disconnected into textContent property of the paragraph
-  
-  info.textContent = userName.content + " Has been disconnected.";
-
-  // We push that new paragraph at the beginnong of the chat.
-
-  document.getElementById("chat").prepend(info)
-  
-  document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
-  
-  let result = ""
-
-  for (let i = 0; i < userName.users.length; i++) {
-    
-      result = result + "<br>"+ userName.users[i] + "<br>";
-    
-  }
-
-  document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + userName.amount + "</p>" + result;
-
-})
-
-
-  
-
-``` 
-
-<p>On the <b> " hello " </b> event we just change that thing, we just use message which already contain the user name </p>
-
-<p>For now the on <b>" newUser "</b> just give display a console.log into the user browser which display his user name, that user name was also display in the hello message. </p>
-
-<p>Finally the <b>logOn</b> and <b>logOff</b> event running the array receveid from the server, and for each pseudo create into the div " <b> usersList </b> every values in the array, at the end of this we also rewrite the amountUsers. </p>
-
-<p>So on connection and disconnection we reacting by adjusting amount user on every clients browser, and remove or add the name of the user in the user list on the right side of our template. </p>
-
-<p>That's all, execute the command below to watch the result in your terminal. Open many windows in your browser on <a href="https://localhost:3000" target="_blank"> localhost:3000 </a> to see the result of all of this.</p>
-
-<img src="3.png">
-
-<p> The next part should resolve the main problem, sending and receive message.</p>
-<p> I hope you're not exhausted yet  :sweat_smile:, if you don't push on Heroku you already can follow me to the branch : <a href="https://github.com/R3tr093/Heroku-socket/tree/messages"> messages </a></p>
-
-
-<hr>
-
-<h3>:rocket: Deploy on Heroku </h3>
-
-<p> It is really simple to push on Heroku your new features, well you always know that </p>
-
-<code>git push heroku master </code>
-
-<p> Well, when your change is pushed join me to the next step on <a href="https://github.com/R3tr093/Heroku-socket/tree/messages">messages</a></p>
-
-
-<hr>
-

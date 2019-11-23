@@ -43,3 +43,48 @@ p.infoOff
     color: red;
 
 }
+
+textarea
+{
+    max-width: 90%;
+    width: 90%;
+    min-width: 90%;
+    margin: 5%;
+    margin-top: 3%;
+    height: 20vh;
+    max-height: 20vh;
+    padding: 8px;
+}
+
+#sentBtn
+{
+    background-color: #1a73e8;
+    color: white;
+    text-align: center;
+    width: 90%;
+    position: relative;
+    top: -30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-color:  #1a73e8;
+    border-radius: 6px;
+
+}
+
+#sentBtn:hover
+{
+    background-color: #1a73e8;
+    color: white;
+    box-shadow: 1px 2px 1px 2px lightgray;
+    text-align: center;
+    width: 90%;
+    position: relative;
+    top: -30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+
+}
