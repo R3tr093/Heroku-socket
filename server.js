@@ -1,8 +1,8 @@
-
 'use strict';
 
 const express = require('express');
 const socketIO = require('socket.io');
+const ent = require('ent');
 
 const path = require('path');
 
@@ -36,11 +36,23 @@ let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny",
 
 let users = [];
 
+let messagesBackup = []
+
+let userMessageBackup = []
+
+let dateBackup = []
+
 function getRandomInt(max) {
 
   return Math.floor(Math.random() * Math.floor(max));
 
 }
+
+
+
+
+
+
 
 
 io.on('connection', (socket) => {
@@ -86,10 +98,33 @@ io.on('connection', (socket) => {
   // Greetings to arrival for the client
   socket.emit("hello",hello)
 
-  
+
   
   // Emit for the client an event newUser
   socket.emit("newUser",(socket.pseudo))
+
+
+
+  // Broadcast messages
+  socket.on('newMessage',(socket) => {
+    
+
+      var d = new Date();
+      var n = d.toLocaleTimeString();
+
+    io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
+
+
+    if(messagesBackup.length < 100 && userMessageBackup.length < 100 && dateBackup.length < 100)
+    {
+      messagesBackup.push(socket.userMsg)
+      userMessageBackup.push(socket.pseudo)
+      dateBackup.push(n)
+    }
+
+  })
+
+  socket.emit("rewrite",{messages: messagesBackup, users: userMessageBackup, date: dateBackup})
 
   // On client disconnection
   socket.on('disconnect', () => {
