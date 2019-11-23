@@ -107,7 +107,7 @@ io.on('connection', (socket) => {
 
   // Broadcast messages
   socket.on('newMessage',(socket) => {
-    console.log(socket.pseudo + socket.userMsg)
+    
 
       var d = new Date();
       var n = d.toLocaleTimeString();

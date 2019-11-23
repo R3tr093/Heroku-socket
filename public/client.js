@@ -118,7 +118,7 @@ socket.on("rewrite", function(values){
   let messages = values.messages;
   let users = values.users;
   let date = values.date;
-  console.log(date)
+
 
   if(messages.length > 0 && users.length > 0)
   {
@@ -145,8 +145,6 @@ socket.on("rewrite", function(values){
     }
   }
 
-  console.log(messages)
-  console.log(users)
 
 
 })
