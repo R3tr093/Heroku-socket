@@ -1,5 +1,5 @@
 var socket = io();
-const ent = require('ent');
+
 
 var el = document.getElementById('server-time');
 
@@ -103,7 +103,7 @@ socket.on('typeMsg', function(values) {
   
   messageElt.setAttribute("class", "messages");
 
-  messageElt.textContent = values.userName + " : " + ent.decode(values.message)
+  messageElt.textContent = values.userName + " : " + values.message
  
   document.getElementById("chat").prepend(messageElt)
   
