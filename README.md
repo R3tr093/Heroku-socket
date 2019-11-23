@@ -15,6 +15,8 @@
 
 <p><i> :memo: Secure all messages, and add a date for every messages sent. </i></p>
 
+<p><i> :memo: Broadcasting every messages by rewriting the dom. </i></p>
+
 <p><i> :memo: And finally, deploy our change on Heroku. </i> </p>
 
 <p> Welcome on this branch, we gonna write the most importants functions of our applications, and also redefining a little bit our template elements organisation.</p>
@@ -140,6 +142,13 @@ body
     overflow-y: auto;
     width: 5%;
 
+
+}
+
+.ell
+{
+    font-size: normal;
+    word-break: break-word;
 }
 
 .userMessages
@@ -202,7 +211,7 @@ textarea
     padding-top: 10px;
     cursor: pointer;
     -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
 
 }
