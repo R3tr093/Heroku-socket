@@ -85,7 +85,7 @@ getMessage.addEventListener('click', () => {
 
   socket.emit("newMessage",{pseudo:userName, userMsg:message})
 
-
+  document.getElementById('textArea').value = "";
 
 })
 

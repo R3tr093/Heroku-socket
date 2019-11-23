@@ -9,26 +9,48 @@ body
 #main
 {
   
-  border: 1px solid black;
+ 
   text-align: center;
 
 }
 
-#userList
+#usersList
 {
-    position: absolute;
-    left: 10px;
-    top: 0vh;
+    width: 12%;
+    height: 100vh;
+    color: white;
     overflow-y: auto;
-    width: 5%;
+    background: #1a73e8;
+   
 
 
+}
+
+#amountUsers
+{
+    margin-top: 0px;
+    border-bottom : 2px solid white;
+    height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .ell
 {
     font-size: normal;
     word-break: break-word;
+    font-family: 'Mukta', sans-serif;
+}
+.ell:hover
+{
+    font-size: large;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+#serverMessages
+{
+    font-family: 'Baskervville', serif;
 }
 
 .userMessages
@@ -51,13 +73,19 @@ p.infoOff
 
 }
 
+label
+{
+    font-family: 'Baskervville', serif;
+}
+
+
 textarea
 {
     max-width: 90%;
     width: 90%;
     min-width: 90%;
     margin: 5%;
-    margin-top: 3%;
+    margin-top: 3px;
     height: 20vh;
     max-height: 20vh;
     padding: 8px;
@@ -91,7 +119,7 @@ textarea
     padding-top: 10px;
     cursor: pointer;
     -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
 
 }
@@ -109,5 +137,26 @@ textarea
     text-align: left;
     color: lightslategray;
     margin-top: 0px;
+
+}
+
+.msgDates:hover
+{
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    color: lightslategray;
+    margin-top: 0px;
+
+}
+
+#chat
+{
+    min-height: 45vh;
+    height: 50vh;
+    max-height: 55vh;
+    overflow-y: scroll;
+    border: 3px solid #1a73e8;
+
 
 }
