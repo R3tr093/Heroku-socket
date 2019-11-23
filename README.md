@@ -532,5 +532,22 @@ socket.on('logOff', function(userName) {
 
 <p>That's all, execute the command below to watch the result in your terminal. Open many windows in your browser on <a href="https://localhost:3000" target="_blank"> localhost:3000 </a> to see the result of all of this.</p>
 
+<img src="3.png">
 
+<p> The next part should resolve the main problem, sending and receive message.</p>
+<p> I hope you're not exhausted yet  :sweat_smile:, if you don't push on Heroku you already can follow me to the branch : <a href="https://github.com/R3tr093/Heroku-socket/tree/messages"> messages </a></p>
+
+
+<hr>
+
+<h3>:rocket: Deploy on Heroku </h3>
+
+<p> It is really simple to push on Heroku your new features, well you always know that </p>
+
+<code>git push heroku master </code>
+
+<p> Well, when your change is pushed join me to the next step on <a href="https://github.com/R3tr093/Heroku-socket/tree/messages">messages</a></p>
+
+
+<hr>
 
