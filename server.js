@@ -108,7 +108,7 @@ io.on('connection', (socket) => {
   // Broadcast messages
   socket.on('newMessage',(socket) => {
     
-
+      socket.userMsg = ent.encode(socket.userMsg)
       var d = new Date();
       var n = d.toLocaleTimeString();
 
