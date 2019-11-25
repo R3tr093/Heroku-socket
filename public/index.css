@@ -155,8 +155,10 @@ textarea
     min-height: 45vh;
     height: 50vh;
     max-height: 55vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     border: 3px solid #1a73e8;
+    padding-left: 4px;
 
 
 }
+

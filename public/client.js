@@ -83,7 +83,12 @@ getMessage.addEventListener('click', () => {
 
   let message = document.getElementById('textArea').value
 
-  socket.emit("newMessage",{pseudo:userName, userMsg:message})
+  if(message.length > 1)
+  {
+    socket.emit("newMessage",{pseudo:userName, userMsg:message})
+  }
+
+  
 
   document.getElementById('textArea').value = "";
 
