@@ -101,7 +101,7 @@ io.on('connection', (socket) => {
 
   
   // Emit for the client an event newUser
-  socket.emit("newUser",(socket.pseudo))
+  socket.emit("newUser",socket.pseudo)
 
 
 
@@ -112,6 +112,7 @@ io.on('connection', (socket) => {
       socket.userMsg = ent.decode(socket.userMsg)
       var d = new Date();
       var n = d.toLocaleTimeString();
+      console.log(socket.pseudo)
 
     io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
 
@@ -128,6 +129,7 @@ io.on('connection', (socket) => {
           messagesBackup.push(socket.userMsg)
           userMessageBackup.push(socket.pseudo)
           dateBackup.push(n)
+
 
   })
 

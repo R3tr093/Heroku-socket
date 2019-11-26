@@ -20,8 +20,9 @@ socket.on('hello', function(message){
 })
 
 // Get the pseudo of the client from the server.
-socket.on('newUser', function(userName) {
-  console.log(userName);
+socket.on('newUser', function(val) {
+  userName = val;
+  
 })
 
 // LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
@@ -32,8 +33,6 @@ socket.on('logOn', function(count) {
   
   info.setAttribute("class", "infoOn");
   
-  userName = count.content;
-
   info.textContent = count.content + " joined the party !";
   
   document.getElementById("chat").prepend(info)
