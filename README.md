@@ -9,7 +9,7 @@
 <p>Final state of project : <a href="https://hidden-crag-28698.herokuapp.com/" target="_blank">socket.io, heroku chat. </a></p>
 
 
-<p>Don't want to create all th chat ? You deploy on Heroku the complete chat on the branch  : <a href="https://github.com/R3tr093/Heroku-socket/tree/takeaway" target="_blank">takeway </a></p>
+<p>Don't want to create all the chat ? You can deploy on Heroku the complete chat on the branch  : <a href="https://github.com/R3tr093/Heroku-socket/tree/takeaway" target="_blank">takeway </a></p>
 
 <p> You should find some files with the <b>.md</b> extension for every upgrade, this readme will guide you to deploy your starting environment, but for that, there is some knowledges to have on <b>Javascript</b>, <b>NodeJS</b> and <b>NPM</b>, I will provide you all the informations you need into this repository about socket.io </p>
 
