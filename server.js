@@ -101,7 +101,7 @@ io.on('connection', (socket) => {
 
   
   // Emit for the client an event newUser
-  socket.emit("newUser",(socket.pseudo))
+  socket.emit("newUser",socket.pseudo)
 
 
 
@@ -112,10 +112,12 @@ io.on('connection', (socket) => {
       socket.userMsg = ent.decode(socket.userMsg)
       var d = new Date();
       var n = d.toLocaleTimeString();
+      console.log(socket.pseudo)
 
     io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
 
 
+<<<<<<< HEAD
         // If the arrays contains more than 100 entry remove the last entry 
         if(messagesBackup.length > 100 && userMessageBackup.length > 100 && dateBackup.length > 100)
         {
@@ -128,6 +130,9 @@ io.on('connection', (socket) => {
           messagesBackup.push(socket.userMsg)
           userMessageBackup.push(socket.pseudo)
           dateBackup.push(n)
+=======
+ 
+>>>>>>> 1b7d9d3661d93f2a0e08b330fdd67b960fafae58
 
   })
 
