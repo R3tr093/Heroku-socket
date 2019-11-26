@@ -120,8 +120,8 @@ io.on('connection', (socket) => {
         if(messagesBackup.length > 100 && userMessageBackup.length > 100 && dateBackup.length > 100)
         {
           messagesBackup.pop()
-          userMessageBackup.push(pop)
-          dateBackup.push(pop)
+          userMessageBackup.pop()
+          dateBackup.pop()
         }
     
         // And then push the new entry at last position in the array
