@@ -811,6 +811,8 @@ let dateBackup = []
 
   })
 
+```   
+
 <p> In first we use our <b>ent</b> package for prevent malicious code injection. </p>
 <p> Then we create a date for the messages, by this way all the date of message is provided by hour server. </p>
 <p> We emit to all the client a request to rewrite the DOM with the values of theses array. </p>
