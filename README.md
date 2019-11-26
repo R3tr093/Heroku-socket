@@ -31,7 +31,7 @@
 
 <p>When the message is receveived securely we use array to keep an eye on the 100 last messages, then we can show to an user who just has come what is been saying in the 100 messages before his connection, sound good right ?</p>
 
-<p>A last thing, we want to create a date for each messages, and when we got all of this we can broadcast a rewriting of the dom ! </p>
+<p>A last thing, we want to create a date for each messages, and when we got all of this,<br> we want to broadcast a rewriting of the DOM for each users connected. </p>
 
 <p>So let's code !, my entire folder and the files which is contain is actually the same from the branch name : <a href="https://github.com/R3tr093/Heroku-socket/tree/emissions">emissions</a></p>
 
