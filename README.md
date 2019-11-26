@@ -840,7 +840,7 @@ let dateBackup = []
 <code>git commit -m " Upgrade "</code><br>
 <code>git push heroku master</code><br>
 
-<p>I hope you enjoyed look at how we can work with <i>socket.io</i> with me, you can add a lot of update to this chat, like a real database, make user to change and choose his own name, send images on the chat, etc... </p>
+<p>I hope you enjoyed look at how we can work with <i>socket.io</i> with me, you can add a lot of update to this chat, like a real database, make user able to change and choose his own name, send images on the chat, etc... </p>
 
 <p>For all theses things I let you practice, if you want to try something different, take  a loot at how create a multi-player drawing application with socket.io and canvas, it's interesting  :yum:</p>
 
