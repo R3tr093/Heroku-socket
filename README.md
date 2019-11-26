@@ -836,7 +836,7 @@ let dateBackup = []
 
 <h2>:tada: Let's push to heroku ! </h2>
 
-<code>git add . <code><br>
+<code>git add . </code><br>
 <code>git commit -m " Upgrade "</code><br>
 <code>git push heroku master</code><br>
 
