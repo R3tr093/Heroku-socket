@@ -129,6 +129,8 @@ io.on('connection', (socket) => {
           userMessageBackup.push(socket.pseudo)
           dateBackup.push(n)
 
+  })
+
   socket.emit("rewrite",{messages: messagesBackup, users: userMessageBackup, date: dateBackup})
 
   // On client disconnection
