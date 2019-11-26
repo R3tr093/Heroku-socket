@@ -290,7 +290,7 @@ textarea
 <p>Let's begin by the <a href="client.js" target="_blank">client.js</a></p>
 
 
-<h3> client.js<h3>
+<h3> client.js</h3>
 <hr>
 
 ``` javascript
