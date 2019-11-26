@@ -1,156 +1,161 @@
-var socket = io();
+'use strict';
+
+const express = require('express');
+const socketIO = require('socket.io');
+const ent = require('ent');
+
+const path = require('path');
+
+process.env.PWD = process.cwd();
+const PORT = process.env.PORT || 3000;
+const server = express()
 
 
-var el = document.getElementById('server-time');
+.get('/', function(req,res){
+  res.sendFile(__dirname + '/index.html');
+})
 
-let getMessage = document.getElementById('sentBtn');
+.use(express.static(path.join(process.env.PWD, 'public')))
 
-let userName;
 
-// SERVER EVENTS
+.listen(PORT, () => console.log(`Listening on ${ PORT}`))
 
-// Display server time
-socket.on('time', function(timeString) {
-    el.innerHTML = 'Server time: ' + timeString;
+const io = socketIO(server);
+
+
+
+let amountUser = 0;
+
+let hello = "Hello, welcome on our chat service have a good talking !";
+
+// Server provide a random name :
+
+let nameList = ["Strawberry","Pineapple","Pink","Tiger","Wolf","Hero","Legend","Otter","Kitten"];
+
+let nameStuffList = ["Angry","Anxious","Curious","Sleeping","Incredible","Tiny","Big","Invisible"];
+
+let users = [];
+
+let messagesBackup = []
+
+let userMessageBackup = []
+
+let dateBackup = []
+
+function getRandomInt(max) {
+
+  return Math.floor(Math.random() * Math.floor(max));
+
+}
+
+
+
+
+
+
+
+
+io.on('connection', (socket) => {
+  
+  // Provide random userName, and push it into an array.
+
+  let userName = nameStuffList[getRandomInt(nameStuffList.length)]
+
+  userName = userName + nameList[getRandomInt(nameList.length)]
+
+  userName = userName + String(getRandomInt(999))
+
+ // Ensure we can't get two equals userName. ( Even if the probability is really weak ! )
+  for (let i = 0; i < users.length; i++) {
+    
+    if(users[i] === userName)
+      {
+        userName = nameStuffList[getRandomInt(nameStuffList.length)]
+
+        userName = userName + nameList[getRandomInt(nameList.length)]
+
+        userName = userName + String(getRandomInt(999))
+      }
+  }
+
+  socket.pseudo = userName;
+
+  users.push(userName)
+
+  hello = "Hello, your logged in as : " + userName + " welcome on our chat service have a good talking !";
+
+ 
+
+  // Increment users amount 
+  
+  amountUser++;
+  
+  amountUser = String(amountUser)
+
+  // Emit data with user name add new amountUser value to EVERYONE.
+  io.emit("logOn",{content: userName, amount: amountUser, users: users })
+
+  // Greetings to arrival for the client
+  socket.emit("hello",hello)
+
+
+  
+  // Emit for the client an event newUser
+  socket.emit("newUser",(socket.pseudo))
+
+
+
+  // Broadcast messages
+  socket.on('newMessage',(socket) => {
+    
+      socket.userMsg = ent.encode(socket.userMsg)
+      socket.userMsg = ent.decode(socket.userMsg)
+      var d = new Date();
+      var n = d.toLocaleTimeString();
+
+    io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
+
+
+    if(messagesBackup.length < 100 && userMessageBackup.length < 100 && dateBackup.length < 100)
+    {
+      messagesBackup.push(socket.userMsg)
+      userMessageBackup.push(socket.pseudo)
+      dateBackup.push(n)
+    }
+
+  })
+
+  socket.emit("rewrite",{messages: messagesBackup, users: userMessageBackup, date: dateBackup})
+
+  // On client disconnection
+  socket.on('disconnect', () => {
+  
+
+
+  // Running the array and remove is name. 
+  
+  for( var i = 0; i < users.length; i++){ 
+   
+    if ( users[i] === socket.pseudo) {
+   
+      users.splice(i, 1); 
+   
+    }
+   }
+
+  // Decrement user
+  amountUser--;
+
+  // Emit data with user name add new amountUser value to EVERYONE.
+  io.emit("logOff",{ content: socket.pseudo, amount: amountUser, users: users})
+
+  
+  
+  });
+
+
 });
 
-socket.on('hello', function(message){
-  document.getElementById('serverMessages').textContent = "" + message;
-  
-})
-
-// Get the pseudo of the client from the server.
-socket.on('newUser', function(userName) {
-  console.log(userName);
-})
-
-// LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
-
-socket.on('logOn', function(count) {
-  
-  let info = document.createElement("p");
-  
-  info.setAttribute("class", "infoOn");
-  
-  userName = count.content;
-
-  info.textContent = count.content + " joined the party !";
-  
-  document.getElementById("chat").prepend(info)
-  
-  document.getElementById('amountUsers').textContent = "Users connected : " + count.amount;
-  
-  let result = ""
-
-  for (let i = 0; i < count.users.length; i++) {
-    
-    result = result + "<br><span class='ell'>"+ count.users[i] + "</span><br>";
-    
-  }
-
-  document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + count.amount + "</p>" + result;
-
-})
-
-socket.on('logOff', function(userName) {
-
-  let info = document.createElement("p");
-  
-  info.setAttribute("class", "infoOff");
-  
-  info.textContent = userName.content + " Has been disconnected.";
-
-  document.getElementById("chat").prepend(info)
-  
-  document.getElementById('amountUsers').textContent = "Users connected : " + userName.amount;
-  
-  let result = ""
-
-  for (let i = 0; i < userName.users.length; i++) {
-    
-      result = result + "<br><span class='ell'>"+ userName.users[i] + "</span><br>";
-    
-  }
-
-  document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + userName.amount + "</p>" + result;
-
-})
 
 
-// CLIENTS MESSAGES EMISSIONS
-
-getMessage.addEventListener('click', () => {
-
-  let message = document.getElementById('textArea').value
-
-  if(message.length > 1)
-  {
-    socket.emit("newMessage",{pseudo:userName, userMsg:message})
-  }
-
-  
-
-  document.getElementById('textArea').value = "";
-
-})
-
-socket.on('typeMsg', function(values) {
-
-  let dateElt = document.createElement("p");
-  
-  dateElt.setAttribute("class", "msgDates");
-
-  dateElt.textContent = "Sent at " + values.date;
- 
-  document.getElementById("chat").prepend(dateElt)
-
-  let messageElt = document.createElement("p");
-  
-  messageElt.setAttribute("class", "messages");
-
-  messageElt.textContent = values.userName + " : " + values.message
- 
-  document.getElementById("chat").prepend(messageElt)
-  
-
-
-})
-
-// Rewrite history
-
-socket.on("rewrite", function(values){
-
-
-  let messages = values.messages;
-  let users = values.users;
-  let date = values.date;
-
-
-  if(messages.length > 0 && users.length > 0)
-  {
-    let i = 0;
-
-    for (let i = 0; i < users.length; i++) 
-    {
-      let dateElt = document.createElement("p");
-  
-      dateElt.setAttribute("class", "msgDates");
-
-      dateElt.textContent = "Sent at " + date[i];
-
-      document.getElementById("chat").prepend(dateElt)
-    
-      let messageElt = document.createElement("p");
-  
-      messageElt.setAttribute("class", "messages");
-    
-      messageElt.textContent = users[i] + " : " + messages[i]
-     
-      document.getElementById("chat").prepend(messageElt)
-    
-    }
-  }
-
-
-
-})
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
