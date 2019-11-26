@@ -101,7 +101,7 @@ io.on('connection', (socket) => {
 
   
   // Emit for the client an event newUser
-  socket.emit("newUser",(socket.pseudo))
+  socket.emit("newUser",socket.pseudo)
 
 
 
@@ -112,22 +112,12 @@ io.on('connection', (socket) => {
       socket.userMsg = ent.decode(socket.userMsg)
       var d = new Date();
       var n = d.toLocaleTimeString();
+      console.log(socket.pseudo)
 
     io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
 
 
-        // If the arrays contains more than 100 entry remove the last entry 
-        if(messagesBackup.length > 100 && userMessageBackup.length > 100 && dateBackup.length > 100)
-        {
-          messagesBackup.pop()
-          userMessageBackup.push(pop)
-          dateBackup.push(pop)
-        }
-    
-        // And then push the new entry at last position in the array
-          messagesBackup.push(socket.userMsg)
-          userMessageBackup.push(socket.pseudo)
-          dateBackup.push(n)
+ 
 
   })
 
