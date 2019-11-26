@@ -14,6 +14,8 @@
 
 <p>:warning: And you still need to have installed Heroku CLI on your computer or find a way that make more sense to you to push you folder on your heroku repository.</p>
 
+<p>You can find a way to install heroku-cli right here >>> <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku-CLI </a></p> 
+
 
 <p>In your terminal in the root of folder type : </p>
 
