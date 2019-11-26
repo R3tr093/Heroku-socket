@@ -11,7 +11,9 @@
 
 <p>On this branch we will take care of the following points : </p>
 
-<p><i> :memo: Receive messages on server</i></p>
+<p><i> :memo: Rewriting template indent and style. </i></p>
+
+<p><i> :memo: Receive messages on server.</i></p>
 
 <p><i> :memo: Secure all messages, and add a date for every messages sent. </i></p>
 
@@ -20,8 +22,6 @@
 <p><i> :memo: And finally, deploy our change on Heroku. </i> </p>
 
 <p> Welcome on this branch, we gonna write the most importants functions of our applications, and also redefining a little bit our template elements organisation.</p>
-
-
 
 <h3>  :question:  How it works ? </h3>
 
@@ -40,9 +40,10 @@
 
 <p>Okay, so now we know what we want to do, and for that we have to create a new area in our html template, so open <a href="index.html">index.html</a></p>
 
-<p>After the div named chat i added a new element named userFrame, take a lokk on it. </p>
+<p>I have added some update in our template, i don't gonna explain this, is just my choice of template and it doesn't have impact in our socket.io practice. </p>
 
 ``` html
+
 
 <html>
 
@@ -50,12 +51,13 @@
 
         <link href="index.css" rel="stylesheet" type="text/css" >
         <link href="bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Baskervville|Mukta:500&display=swap" rel="stylesheet"> 
         
     </head>
 
   <body>
 
-    <div class="d-none d-md-block col-1" id="usersList">
+    <div class="d-none d-md-block" id="usersList">
 
         <p id="amountUsers"></p>
 
@@ -68,26 +70,24 @@
            
 
       
-            <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12" id="main">
+            <div class="col-lg-10 col-md-12 col-xs-12 col-sm-12" id="main">
                
                 <p id='server-time'></p>
       
                 <p id="serverMessages"></p>
 
-                <hr>
+                
 
                 <div id="chat">
 
                 </div>
              
-                <!-- Here the new element we insert -->
-
-                <hr>
                 
                 <div id="userFrame">
 
-
+                  <br>
                   <label for="textArea">Write your message here : </label>
+                  <br><br>
                   <textarea class="form-control" id="textArea" rows="3"></textarea>
                   <button type="button" class="btn btn-primary btn-lg btn-block" id="sentBtn">Sent the message</button>
 
@@ -114,7 +114,7 @@
 
 ```
 
-<p> And surprise theses new changes on our template come with new changes for our css too ! Nothing really important to explain there i just give the code who setting my template for working on the same view.</p>
+<p> And surprise theses new changes on our template come with new changes for our <b>css</b> too ! Nothing really important to explain there too, I just give the code who setting my template for let you working on the same view than me.</p>
 
 ``` css
 
@@ -129,26 +129,48 @@ body
 #main
 {
   
-  border: 1px solid black;
+ 
   text-align: center;
 
 }
 
-#userList
+#usersList
 {
-    position: absolute;
-    left: 10px;
-    top: 0vh;
+    width: 12%;
+    height: 100vh;
+    color: white;
     overflow-y: auto;
-    width: 5%;
+    background: #1a73e8;
+   
 
 
+}
+
+#amountUsers
+{
+    margin-top: 0px;
+    border-bottom : 2px solid white;
+    height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .ell
 {
     font-size: normal;
     word-break: break-word;
+    font-family: 'Mukta', sans-serif;
+}
+.ell:hover
+{
+    font-size: large;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+#serverMessages
+{
+    font-family: 'Baskervville', serif;
 }
 
 .userMessages
@@ -171,13 +193,19 @@ p.infoOff
 
 }
 
+label
+{
+    font-family: 'Baskervville', serif;
+}
+
+
 textarea
 {
     max-width: 90%;
     width: 90%;
     min-width: 90%;
     margin: 5%;
-    margin-top: 3%;
+    margin-top: 3px;
     height: 20vh;
     max-height: 20vh;
     padding: 8px;
@@ -216,4 +244,47 @@ textarea
 
 }
 
+.messages
+{
+    text-align: left;
+    margin-bottom: 2px;
+    
+}
+
+.msgDates
+{
+    font-size: small;
+    text-align: left;
+    color: lightslategray;
+    margin-top: 0px;
+
+}
+
+.msgDates:hover
+{
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    color: lightslategray;
+    margin-top: 0px;
+
+}
+
+#chat
+{
+    min-height: 45vh;
+    height: 50vh;
+    max-height: 55vh;
+    overflow-y: auto;
+    border: 3px solid #1a73e8;
+    padding-left: 4px;
+
+
+}
+
+
 ```
+
+<p>Here we are, i'm gonna explain and show you all the code we did for making this chat service really working. </p>
+
+<p>Let's begin by the <a href="client.js" target="_blank">client.js</a></p>
