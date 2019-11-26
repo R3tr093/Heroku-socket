@@ -595,7 +595,7 @@ socket.on("rewrite", function(values){
 <p>Look at the last part <a href="client.js" target="_blank">server.js</a></p>
 
 
-<h3>server.js<h3>
+<h3>server.js</h3>
 
 ``` javascript
 
