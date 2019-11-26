@@ -8,7 +8,7 @@
 
 <p>Don't have time to read all the repository but you want to take a look on the end of the project, you'are on the good branch ! </p>
 
-<p>Download the repository and go into the root of the folder you donwloaded.</p>
+<p>Download the repository and go into the root of the folder you downloaded <b>(Heroku-socket)</b>.</p>
 
 <p> :hand: You also gonna need a heroku account, you can register yourself here <a href="https://signup.heroku.com/" target="_blank"> Register on Heroku </a></p>
 
@@ -32,6 +32,8 @@
 
 <p>Let's follow with :  </p>
 
+<code> git add . </code><br>
+
 <code> git commit -am 'socket.io project done.' </code>
 
 <br>
@@ -46,5 +48,9 @@
 
 <p> Now you have little chat service deployed ! </p>
 
-<p> You can find the state of the final structure repository on the branch named <i><a href="https://github.com/R3tr093/Heroku-socket/tree/master">master </a></i>  </p>
+<p>You are owner of a chat like this : </p>
+
+<img src="3.png">
+
+<p> You can find the state of the final structure repository on the branch named <i><a href="https://github.com/R3tr093/Heroku-socket/tree/master">master </a></i> </p>
 
