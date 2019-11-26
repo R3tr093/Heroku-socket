@@ -96,12 +96,58 @@ io.on('connection', (socket) => {
   io.emit("logOn",{content: userName, amount: amountUser, users: users })
 
   // Greetings to arrival for the client
-  socket.emit("hello",hello)
+  socket.emit("hello",socket.pseudo)
+
+  socket.on('updateName',function(value){
+
+    value = ent.encode(value)
+
+    let check = false;
+
+    for( var i = 0; i < users.length; i++){ 
+   
+      if ( users[i] === value) {
+     
+        check = true
+        socket.emit('returnName',"X")
+        
+     
+      }
+
+     }
+
+     if(check === false)
+     {
+
+      for( var i = 0; i < users.length; i++){ 
+   
+        if ( users[i] === socket.pseudo) {
+       
+          users.splice(i, 1);
+          
+         
+       
+        }
+  
+       }
+       
+       users.push(value)
+       socket.emit('returnName',{List: users, Name: value})
+       io.emit("newList",{list: users,amount: amountUser,oldName: socket.pseudo,Name: value})
+     }
 
 
+
+    
+
+    
+
+  })
   
   // Emit for the client an event newUser
-  socket.emit("newUser",socket.pseudo)
+  socket.emit("newUser",(socket.pseudo))
+
+ 
 
 
 
@@ -109,10 +155,9 @@ io.on('connection', (socket) => {
   socket.on('newMessage',(socket) => {
     
       socket.userMsg = ent.encode(socket.userMsg)
-      socket.userMsg = ent.decode(socket.userMsg)
+
       var d = new Date();
       var n = d.toLocaleTimeString();
-      console.log(socket.pseudo)
 
     io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
 
@@ -121,15 +166,14 @@ io.on('connection', (socket) => {
         if(messagesBackup.length > 100 && userMessageBackup.length > 100 && dateBackup.length > 100)
         {
           messagesBackup.pop()
-          userMessageBackup.pop()
-          dateBackup.pop()
+          userMessageBackup.push(pop)
+          dateBackup.push(pop)
         }
     
         // And then push the new entry at last position in the array
           messagesBackup.push(socket.userMsg)
           userMessageBackup.push(socket.pseudo)
           dateBackup.push(n)
-
 
   })
 
@@ -163,6 +207,7 @@ io.on('connection', (socket) => {
 
 
 });
+
 
 
 
