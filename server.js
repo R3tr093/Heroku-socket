@@ -116,14 +116,18 @@ io.on('connection', (socket) => {
     io.emit("typeMsg",{userName: socket.pseudo, message: socket.userMsg, date: n})
 
 
-    if(messagesBackup.length < 100 && userMessageBackup.length < 100 && dateBackup.length < 100)
-    {
-      messagesBackup.push(socket.userMsg)
-      userMessageBackup.push(socket.pseudo)
-      dateBackup.push(n)
-    }
-
-  })
+        // If the arrays contains more than 100 entry remove the last entry 
+        if(messagesBackup.length > 100 && userMessageBackup.length > 100 && dateBackup.length > 100)
+        {
+          messagesBackup.pop()
+          userMessageBackup.push(pop)
+          dateBackup.push(pop)
+        }
+    
+        // And then push the new entry at last position in the array
+          messagesBackup.push(socket.userMsg)
+          userMessageBackup.push(socket.pseudo)
+          dateBackup.push(n)
 
   socket.emit("rewrite",{messages: messagesBackup, users: userMessageBackup, date: dateBackup})
 
