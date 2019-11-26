@@ -38,6 +38,11 @@ Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Herok
 <p> Here the documentation i followed to write this guide, which is more a reminder for myself, but whatever. </p>
 <br>
 
+<p>:warning: For persistance of data, I made the choice to use arrays, it's a little pass-pass, which is not suitable for a real chat service, but allows us to do some tests with socket.io </p>
+
+<p>Also i don't want to require knowledge about MongoDB or something like that for following this repository, but you're free to provide your own persistance of data system, i'll gave you some tips to doing it later.</p>
+<br>
+
 <p><i>:link: <a href="https://devcenter.heroku.com/articles/node-websockets" target="_blank">Heroku - Websocket </a></i></p>
 
 # Let's deploy !
