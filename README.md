@@ -5,6 +5,10 @@
 <hr>
 
 <p> Hello, this repository talking about how to deploy and build a chat service working with <b>socket.io</b> on Heroku.</p>
+
+<p>Final state of project : <a href="https://hidden-crag-28698.herokuapp.com/" target="_blank">socket.io, heroku chat. </a></p>
+
+
 <p> You should find some files with the <b>.md</b> extension for every upgrade, this readme will guide you to deploy your starting environment, but for that, there is some knowledges to have on <b>Javascript</b>, <b>NodeJS</b> and <b>NPM</b>, I will provide you all the informations you need into this repository about socket.io </p>
 
 <h3> :question: - What do you really need to know? </h3>
@@ -25,8 +29,6 @@
 </ul>
 
 <p> :hand: You also gonna need a heroku account, you can register yourself here <a href="https://signup.heroku.com/" target="_blank"> Register on Heroku </a></p>
-
-<p><a href="https://hidden-crag-28698.herokuapp.com/" target="_blank">Look at the project ending. </a></p>
 
 <p>
 Using <b>Heroku CLI</b> is really helpfull when you deploy your project on Heroku, I strongly recommend to use it, and in this tutorial all the instructions about deployement is made on the Heroku CLI, you can get the Heroku CLI by the command below.</p>
