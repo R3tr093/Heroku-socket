@@ -79,31 +79,41 @@ socket.on('logOff', function(userName) {
 
 // CLIENTS MESSAGES EMISSIONS
 
+
+// When user click on the send btn in template
+
 getMessage.addEventListener('click', () => {
 
+  // We look if the message have more than 2 characters
   let message = document.getElementById('textArea').value
 
+  // if yes we emit a newMessage for the server with the user pseudo and user message
   if(message.length > 1)
   {
     socket.emit("newMessage",{pseudo:userName, userMsg:message})
   }
 
   
-
+  // And we clean the textarea of the message.
   document.getElementById('textArea').value = "";
 
 })
 
+
+// When server emit a request to type new message in the template
 socket.on('typeMsg', function(values) {
 
+  // We create a 'p' tag for the date we set some attribute to it, and adding the text content with the date value from the server.
   let dateElt = document.createElement("p");
   
   dateElt.setAttribute("class", "msgDates");
 
   dateElt.textContent = "Sent at " + values.date;
  
+  // We add this in first position in the chat 
   document.getElementById("chat").prepend(dateElt)
 
+  // Now we do the same for the message 
   let messageElt = document.createElement("p");
   
   messageElt.setAttribute("class", "messages");
@@ -116,30 +126,36 @@ socket.on('typeMsg', function(values) {
 
 })
 
-// Rewrite history
-
+// Rewrite history, make the client able to see the 100 last messages on the chat at the connections.
+// This event is emitted by the server on user connection.
 socket.on("rewrite", function(values){
 
-
+  // Request the array with the value of the user name, date, and message content of the 100 last messages from the server.
   let messages = values.messages;
   let users = values.users;
   let date = values.date;
 
 
+  // If we got some data in the arrays we get from the server
   if(messages.length > 0 && users.length > 0)
   {
     let i = 0;
 
+    // We running the array and for each entry we do this.
     for (let i = 0; i < users.length; i++) 
     {
+      
+      // Create a 'p' tag and set some attributes and give at textcontent value the date of the message
       let dateElt = document.createElement("p");
   
       dateElt.setAttribute("class", "msgDates");
 
       dateElt.textContent = "Sent at " + date[i];
 
+      // Insert this in first postion on the chat
       document.getElementById("chat").prepend(dateElt)
     
+      // Do the same for message and user name
       let messageElt = document.createElement("p");
   
       messageElt.setAttribute("class", "messages");
