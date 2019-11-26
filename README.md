@@ -10,7 +10,9 @@
 
 <p>Download the repository and go into the root of the folder you donwloaded.</p>
 
-<p>:warning: You still need to have installed Heroku CLI on your computer.</p>
+<p> :hand: You also gonna need a heroku account, you can register yourself here <a href="https://signup.heroku.com/" target="_blank"> Register on Heroku </a></p>
+
+<p>:warning: And you still need to have installed Heroku CLI on your computer or find a way that make more sense to you to push you folder on your heroku repository.</p>
 
 
 <p>In your terminal in the root of folder type : </p>
