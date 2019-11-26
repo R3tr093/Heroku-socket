@@ -7,6 +7,9 @@ let getMessage = document.getElementById('sentBtn');
 
 let userName;
 
+let users = []
+
+
 // SERVER EVENTS
 
 // Display server time
@@ -15,13 +18,71 @@ socket.on('time', function(timeString) {
 });
 
 socket.on('hello', function(message){
-  document.getElementById('serverMessages').textContent = "" + message;
+  document.getElementById('serverMessages').innerHTML = "Hello, your logged in as : <button id='nameBtn'> " + message + " </button> welcome on our chat service have a good talking !";
+
+  document.getElementById("nameBtn").addEventListener("click", ()=>{
   
+    let newName = prompt("Enter a new name : ")
+  
+    while(newName.length < 2 || newName.length >20 )
+    {
+       newName = prompt("Enter a new name : ")
+    }
+  
+    socket.emit('updateName',newName)
+    
+  
+  })
+
+
 })
 
+socket.on('returnName',function(value){
+  if(value === "X")
+  {
+    alert('nope')
+  }
+
+  else
+  {
+
+    let info = document.createElement("p");
+  
+    info.setAttribute("class", "infoOff");
+
+  
+    info.textContent = userName + " change his name for " + value.Name;
+    
+    document.getElementById("chat").prepend(info)
+
+
+    userName = value.Name;
+
+    let amount = String(value.List.length)
+
+    document.getElementById('amountUsers').textContent = "Users connected : " + amount;
+  
+    let result = ""
+  
+    for (let i = 0; i < value.List.length; i++) {
+      
+      result = result + "<br><span class='ell'>"+ value.List[i] + "</span><br>";
+      
+    }
+    document.getElementById('nameBtn').textContent =value.Name;
+    document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + amount + "</p>" + result;
+
+
+  }
+})
+
+
+
+
+
 // Get the pseudo of the client from the server.
-socket.on('newUser', function(userName) {
-  console.log(userName);
+socket.on('newUser', function(val) {
+  userName = val;
 })
 
 // LogOn && logOff refresh list of user, and amount of user, display a message who said an user has been connected or disconnected to everyone
@@ -31,8 +92,6 @@ socket.on('logOn', function(count) {
   let info = document.createElement("p");
   
   info.setAttribute("class", "infoOn");
-  
-  userName = count.content;
 
   info.textContent = count.content + " joined the party !";
   
@@ -118,8 +177,8 @@ socket.on('typeMsg', function(values) {
   
   messageElt.setAttribute("class", "messages");
 
-  messageElt.textContent = values.userName + " : " + values.message
- 
+  messageElt.innerHTML = "<span class='pseudos'>" + values.userName + " </span> : " + values.message + "</b>";
+  
   document.getElementById("chat").prepend(messageElt)
   
 
@@ -132,7 +191,7 @@ socket.on("rewrite", function(values){
 
   // Request the array with the value of the user name, date, and message content of the 100 last messages from the server.
   let messages = values.messages;
-  let users = values.users;
+  users = values.users;
   let date = values.date;
 
 

@@ -96,9 +96,52 @@ io.on('connection', (socket) => {
   io.emit("logOn",{content: userName, amount: amountUser, users: users })
 
   // Greetings to arrival for the client
-  socket.emit("hello",hello)
+  socket.emit("hello",socket.pseudo)
 
+  socket.on('updateName',function(value){
 
+    value = ent.encode(value)
+
+    let check = false;
+
+    for( var i = 0; i < users.length; i++){ 
+   
+      if ( users[i] === value) {
+     
+        check = true
+        socket.emit('returnName',"X")
+        
+     
+      }
+
+     }
+
+     if(check === false)
+     {
+
+      for( var i = 0; i < users.length; i++){ 
+   
+        if ( users[i] === socket.pseudo) {
+       
+          users.splice(i, 1);
+          
+         
+       
+        }
+  
+       }
+       
+       users.push(value)
+       socket.emit('returnName',{List: users, Name: value})
+     }
+
+     console.log(users)
+
+    
+
+    
+
+  })
   
   // Emit for the client an event newUser
   socket.emit("newUser",(socket.pseudo))
