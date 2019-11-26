@@ -40,21 +40,27 @@ socket.on('hello', function(message){
 socket.on('returnName',function(value){
   if(value === "X")
   {
-    alert('nope')
+    document.getElementById("modal").style.display = "flex"
+    document.getElementById('report').textContent = "Sorry, this name is already taken.";
+
+    document.getElementById("closeModal").addEventListener("click",function(){
+      
+      document.getElementById("modal").style.display = "none"
+      document.getElementById('report').textContent = "";
+
+
+    })
+
+    setTimeout(()=>{
+
+      document.getElementById("modal").style.display = "none"
+      document.getElementById('report').textContent = "";
+
+    },3000)
   }
 
   else
   {
-
-    let info = document.createElement("p");
-  
-    info.setAttribute("class", "infoOff");
-
-  
-    info.textContent = userName + " change his name for " + value.Name;
-    
-    document.getElementById("chat").prepend(info)
-
 
     userName = value.Name;
 
@@ -77,7 +83,33 @@ socket.on('returnName',function(value){
 })
 
 
+socket.on('newList',function(value){
 
+    let amount = String(value.amount)
+
+    document.getElementById('amountUsers').textContent = "Users connected : " + amount;
+  
+    let result = ""
+  
+    for (let i = 0; i < value.list.length; i++) {
+      
+      result = result + "<br><span class='ell'>"+ value.list[i] + "</span><br>";
+      
+    }
+
+    document.getElementById("usersList").innerHTML = "<p id='amountUsers'> Users connected : " + amount + "</p>" + result;
+
+    let info = document.createElement("p");
+  
+    info.setAttribute("class", "infoOff");
+
+  
+    info.textContent = value.oldName + " change his name for " + value.Name;
+    
+    document.getElementById("chat").prepend(info)
+
+
+})
 
 
 // Get the pseudo of the client from the server.
@@ -146,38 +178,56 @@ getMessage.addEventListener('click', () => {
   // We look if the message have more than 2 characters
   let message = document.getElementById('textArea').value
 
+  let check = message.replace(/ /g, '')
+
   // if yes we emit a newMessage for the server with the user pseudo and user message
-  if(message.length > 1)
+  if(check.length > 1)
   {
     socket.emit("newMessage",{pseudo:userName, userMsg:message})
   }
 
+  document.getElementById('textArea').focus();
   
   // And we clean the textarea of the message.
   document.getElementById('textArea').value = "";
 
 })
 
+document.addEventListener('keypress',function(e){
+  
+  if(e.keyCode === 13)
+  {
+      // We look if the message have more than 2 characters
+     let message = document.getElementById('textArea').value
+     
+     let check = message.replace(/ /g, '')
+
+      // if yes we emit a newMessage for the server with the user pseudo and user message
+      if(check.length > 1)
+      {
+         socket.emit("newMessage",{pseudo:userName, userMsg:message})
+      }
+      document.getElementById('textArea').focus();
+  
+    
+    // And we clean the textarea of the message.
+      document.getElementById('textArea').value = "";
+
+    }
+
+})
+
 
 // When server emit a request to type new message in the template
 socket.on('typeMsg', function(values) {
-
-  // We create a 'p' tag for the date we set some attribute to it, and adding the text content with the date value from the server.
-  let dateElt = document.createElement("p");
   
-  dateElt.setAttribute("class", "msgDates");
-
-  dateElt.textContent = "Sent at " + values.date;
- 
-  // We add this in first position in the chat 
-  document.getElementById("chat").prepend(dateElt)
 
   // Now we do the same for the message 
   let messageElt = document.createElement("p");
   
   messageElt.setAttribute("class", "messages");
 
-  messageElt.innerHTML = "<span class='pseudos'>" + values.userName + " </span> : " + values.message + "</b>";
+  messageElt.innerHTML = "<span class='pseudos'>" + values.userName + " </span> : " + values.message + "<br><hr>" + "<span class='msgDates'>  Sent at " + values.date;
   
   document.getElementById("chat").prepend(messageElt)
   
@@ -204,22 +254,13 @@ socket.on("rewrite", function(values){
     for (let i = 0; i < users.length; i++) 
     {
       
-      // Create a 'p' tag and set some attributes and give at textcontent value the date of the message
-      let dateElt = document.createElement("p");
-  
-      dateElt.setAttribute("class", "msgDates");
-
-      dateElt.textContent = "Sent at " + date[i];
-
-      // Insert this in first postion on the chat
-      document.getElementById("chat").prepend(dateElt)
-    
       // Do the same for message and user name
       let messageElt = document.createElement("p");
   
       messageElt.setAttribute("class", "messages");
     
-      messageElt.textContent = users[i] + " : " + messages[i]
+      
+      messageElt.innerHTML = "<span class='pseudos'>" + users[i] + " </span> : " + messages[i] + "<br><hr>" + "<span class='msgDates'>  Sent at " + date[i];
      
       document.getElementById("chat").prepend(messageElt)
     
@@ -229,3 +270,5 @@ socket.on("rewrite", function(values){
 
 
 })
+
+document.getElementById('textArea').focus();

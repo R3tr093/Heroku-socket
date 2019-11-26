@@ -133,9 +133,10 @@ io.on('connection', (socket) => {
        
        users.push(value)
        socket.emit('returnName',{List: users, Name: value})
+       io.emit("newList",{list: users,amount: amountUser,oldName: socket.pseudo,Name: value})
      }
 
-     console.log(users)
+
 
     
 
@@ -146,13 +147,15 @@ io.on('connection', (socket) => {
   // Emit for the client an event newUser
   socket.emit("newUser",(socket.pseudo))
 
+ 
+
 
 
   // Broadcast messages
   socket.on('newMessage',(socket) => {
     
       socket.userMsg = ent.encode(socket.userMsg)
-      socket.userMsg = ent.decode(socket.userMsg)
+
       var d = new Date();
       var n = d.toLocaleTimeString();
 
@@ -204,6 +207,7 @@ io.on('connection', (socket) => {
 
 
 });
+
 
 
 

@@ -56,6 +56,7 @@ body
 .userMessages
 {
     text-align: left;
+
 }
 
 p.infoOn
@@ -127,8 +128,14 @@ textarea
 .messages
 {
     text-align: left;
-    margin-bottom: 2px;
-    
+    margin: 4px;
+    margin-bottom: 10px;
+    background: antiquewhite;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .msgDates
@@ -156,9 +163,94 @@ textarea
     height: 50vh;
     max-height: 55vh;
     overflow-y: auto;
-    border: 3px solid #1a73e8;
     padding-left: 4px;
 
 
 }
 
+#nameBtn
+{
+    background-color: #1a73e8;
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-color:  #1a73e8;
+    border-radius: 6px;
+
+}
+
+#nameBtn:hover
+{
+    background-color: #1a73e8;
+    box-shadow: 1px 2px 1px 2px lightgray;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+
+}
+
+.pseudos
+{
+    color: #1a73e8;
+    font-style: italic;
+    font-weight: 500;
+}
+
+#modal
+{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    position: absolute;
+    top: 2%;
+    height: 150px;
+    width: 50%;
+    margin: auto;
+    margin-left: 26%;
+    border: 2px solid lightgray;
+    -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+}
+
+
+#closeModal
+{
+    width: 100%;
+    height: 50px;
+    background-color: #1a73e8;
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-color:  #1a73e8;
+    border-radius: 6px;
+    margin-bottom: 0px;
+}
+
+#closeModal:hover
+{
+    background-color: #1a73e8;
+    box-shadow: 1px 2px 1px 2px lightgray;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 73px -17px rgba(0,0,0,0.75);
+}
+
+#report
+{
+    font-size: large;
+    color: red;
+    font-style: italic;
+    text-align: center;
+}
