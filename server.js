@@ -124,16 +124,18 @@ io.on('connection', (socket) => {
         if ( users[i] === socket.pseudo) {
        
           users.splice(i, 1);
-          
+          users.push(value)
+           
          
        
         }
   
        }
        
-       users.push(value)
+       
        socket.emit('returnName',{List: users, Name: value})
        io.emit("newList",{list: users,amount: amountUser,oldName: socket.pseudo,Name: value})
+       socket.pseudo = value  
      }
 
 
